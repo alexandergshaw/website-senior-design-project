@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['testserver', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
+    'stats.apps.StatsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
