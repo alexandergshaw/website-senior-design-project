@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    {% load static %}
+    <div class="container">
+        <div class="row">
+            <br><br>
+            <div style="text-align: center">
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
