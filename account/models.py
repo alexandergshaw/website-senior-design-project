@@ -4,7 +4,8 @@ from django.db import models
 
 
 class Account(models.Model):
-    university_id = models.CharField(max_length=30, primary_key=True, db_column='UNIVERSITY_ID')
+    id = models.AutoField(primary_key=True, db_column='ID')
+    university_id = models.CharField(max_length=30, db_column='UNIVERSITY_ID')
     student_status = models.CharField(max_length=30, db_column='STUDENT_STATUS')
     color_scheme = models.CharField(max_length=30, null=True, db_column='COLOR_SCHEME')
 
