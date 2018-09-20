@@ -175,3 +175,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static').replace('\\', '/')]
 
 LOGIN_URL = 'account:login'
+
+LOGOUT_REDIRECT_URL = 'index'

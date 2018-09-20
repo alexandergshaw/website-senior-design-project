@@ -24,6 +24,6 @@ urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('admin/', admin.site.urls),
     path('stats/', include('stats.urls')),
+    path('profiles/', include('profiles.urls')),
     path('account/', include('social_django.urls', namespace='social')),
-    path('account/', include('django.contrib.auth.urls')),
 ]
