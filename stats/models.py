@@ -9,7 +9,7 @@ class Stats(models.Model):
     stat_id = models.AutoField(primary_key=True, db_column='STAT_ID')
     user_id = models.CharField(max_length=30, db_index=True, db_column='USER_ID')
     voltage = models.DecimalField(max_digits=7, decimal_places=3, db_column='VOLTAGE')
-    current = models.DecimalField(max_digits=7, decimal_places=3, db_column='CURRENT')
+    current = models.DecimalField(max_digits=7, decimal_places=3, db_column='CURR')
     power = models.DecimalField(max_digits=7, decimal_places=3, db_column='POWER')
     time_when_measured = models.DateTimeField(auto_now_add=True, db_column='TIME_WHEN_MEASURED')
 
