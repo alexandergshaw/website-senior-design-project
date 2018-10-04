@@ -44,61 +44,87 @@
 
     </head>
     <body>
-        <ul class="nav">
-          <li class="nav-item">
-            Dashboard
-          </li>
-          <li class="nav-item">
-            test
-          </li>
-        </ul>
+        <nav class="navbar navbar-dark bg-dark">
+            <span class="navbar-brand mb-0 h1">Dashboard</span>
+
+{#            TODO: RETRIEVE AND DISPLAY STRING USER ID HERE#}
+            <span class="navbar-content">Placeholder for User ID<span>
+        </nav>
+
+        <div class="stats-content">
+            <div class="wrapper">
+            <nav id="sidebar">
+                <ul class="list-unstyled components">
+                    <li>
+                        <a href="#">Control</a>
+                    </li>
+                    <li>
+                        <a href="#">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#">History</a>
+                    </li>
+                    <li>
+                        <a href="#">Admin</a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="content">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+
+                        <button type="button" id="sidebarCollapse" class="btn btn-info">
+                            <i class="fas fa-align-left"></i>
+                            <span>Toggle Sidebar</span>
+                        </button>
+
+                    </div>
+                </nav>
+            </div>
+        </div>
 
         <div>
-            <!--Side bar-->
-            <nav class="sidebar col-md-2 d-none d-md-block bg-light">
-                <div class="sidebar-sticky">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            Control
-                        </a>
-                    </li>
-                </div>
-            </nav>
-
-
-
             <div class="measurements-row">
                 <div class="card container">
-                    Voltage
-                    <div class="card-body">
+                    <h1>
+                        Voltage
+                    </h1>
+                    <h2 class="card-body">
                         {{ voltage }}
-                    </div>
+                    </h2>
                 </div>
 
                 <div class="card container">
-                    Current
-                    <div class="card-body">
+                    <h1>
+                        Current
+                    </h1>
+                    <h2 class="card-body">
                         {{ current }}
-                    </div>
+                    </h2>
                 </div>
             </div>
 
             <div class="measurements-row">
                 <div class="card container">
-                    Power
-                    <div class="card-body">
+                    <h1>
+                        Power
+                    </h1>
+                    <h2 class="card-body">
                         {{ power }}
-                    </div>
+                    </h2>
                 </div>
 
 
                 <div class="card container">
-                    Average Graph
-                    <div class="card-body">
+                    <h1>
+                        Average Graph
+                    </h1>
+                    <h2 class="card-body">
                         <canvas id="myChart" width="150" height="150"></canvas>
-                    </div>
+                    </h2>
                 </div>
             </div>
+        </div>
         </div>
     </body>
 </html>
