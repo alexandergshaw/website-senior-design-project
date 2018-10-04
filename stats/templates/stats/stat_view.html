@@ -14,6 +14,26 @@
 
         <title>Statistics</title>
 
+        <script>
+            function openNav() {
+                document.getElementById("sidebar").style.width = "250px";
+                {#document.getElementById("main").style.marginLeft = "250px";#}
+            }
+
+            function toggleNav() {
+                var sidebar = document.getElementById("sidebar");
+
+                if (sidebar.style.display == 'none') {
+                    sidebar.style.display = 'block';
+                }
+
+                else {
+                    console.log('yeet');
+                    sidebar.style.display = 'none';
+                }
+            }
+        </script>
+
         <script type="text/javascript">
             $( document ).ready(function() {
                 var options = {
@@ -48,11 +68,20 @@
             <span class="navbar-brand mb-0 h1">Dashboard</span>
 
 {#            TODO: RETRIEVE AND DISPLAY STRING USER ID HERE#}
-            <span class="navbar-content">Placeholder for User ID<span>
+            <span class="navbar-content">Placeholder for User ID</span>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-info" onclick="toggleNav()">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+
+            </div>
         </nav>
 
         <div class="stats-content">
-            <div class="wrapper">
             <nav id="sidebar">
                 <ul class="list-unstyled components">
                     <li>
@@ -69,19 +98,6 @@
                     </li>
                 </ul>
             </nav>
-            <div id="content">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                            <span>Toggle Sidebar</span>
-                        </button>
-
-                    </div>
-                </nav>
-            </div>
-        </div>
 
         <div>
             <div class="measurements-row">
@@ -126,5 +142,6 @@
             </div>
         </div>
         </div>
+    </div>
     </body>
 </html>

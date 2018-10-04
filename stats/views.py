@@ -16,8 +16,8 @@ class ShowStatsView(LoginRequiredMixin, View):
         current_measurements = all_stats.aggregate(Avg('current'))
         voltage_measurements = all_stats.aggregate(Avg('voltage'))
         stat_requested = Stats.objects.get(stat_id=stat_id)
+
         context = {
-            'user_id': user_id,
             'power': stat_requested.power,
             'current': stat_requested.current,
             'voltage': stat_requested.voltage,
