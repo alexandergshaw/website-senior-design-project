@@ -11,25 +11,11 @@
 
         <title>Statistics</title>
 
-        <script>
-            function openNav() {
-                document.getElementById("sidebar").style.width = "250px";
-                {#document.getElementById("main").style.marginLeft = "250px";#}
-            }
 
-            function toggleNav() {
-                var sidebar = document.getElementById("sidebar");
 
-                if (sidebar.style.display == 'none') {
-                    sidebar.style.display = 'block';
-                }
+    </head>
+    <body>
 
-                else {
-                    console.log('yeet');
-                    sidebar.style.display = 'none';
-                }
-            }
-        </script>
 
         <script type="text/javascript">
             $( document ).ready(function() {
@@ -58,41 +44,6 @@
                 var averageLineChart = new Chart(ctx).Line(data);
             });
         </script>
-
-    </head>
-    <body>
-        <nav class="navbar navbar-dark bg-dark">
-            <span class="navbar-brand mb-0 h1">Dashboard</span>
-            <span class="navbar-content">{{ user.username }}</span>
-        </nav>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn btn-info" onclick="toggleNav()">
-                    <i class="fas fa-align-left"></i>
-                    <span>Toggle Sidebar</span>
-                </button>
-
-            </div>
-        </nav>
-
-        <div class="stats-content">
-            <nav id="sidebar">
-                <ul class="list-unstyled components">
-                    <li>
-                        <a href="#">Control</a>
-                    </li>
-                    <li>
-                        <a href="#">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#">History</a>
-                    </li>
-                    <li>
-                        <a href="#">Admin</a>
-                    </li>
-                </ul>
-            </nav>
 
         <div>
             <div class="measurements-row">
