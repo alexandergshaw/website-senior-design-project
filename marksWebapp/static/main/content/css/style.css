@@ -9,6 +9,9 @@ html, body {
     /*margin: 0;*/
     /*font-family: 'Varela Round', sans-serif;*/
 /*}*/
+.navbar-content {
+    color: white;
+}
 
 .sidebar-icon-content {
     position: absolute;
@@ -92,7 +95,7 @@ input[type=checkbox] {
     position: absolute;
     height: 3px;
     width: 100%;
-    background-color: black;
+    background-color: white;
 }
 .horizontal {
     transition: all 0.3s;
