@@ -9,9 +9,13 @@ html, body {
     /*margin: 0;*/
     /*font-family: 'Varela Round', sans-serif;*/
 /*}*/
+.sidebar-username {
+    left: 90%;
+}
 
 .sidebar-content {
     display: flex;
+    align-items: center;
 }
 
 .main {
@@ -69,16 +73,15 @@ input[type=checkbox] {
     box-sizing: border-box;
     display: none;
 }
-.sidebarIconToggle {
+.sidebar-icon-content {
+    position: absolute;
+    top: 17%;
+    left: 1%;
+}
+.sidebar-icon {
     transition: all 0.3s;
-    box-sizing: border-box;
     cursor: pointer;
     z-index: 1;
-    height: 100%;
-    width: 100%;
-    top: 22px;
-    left: 15px;
-    height: 22px;
     width: 22px;
 }
 .spinner {
@@ -109,18 +112,18 @@ input[type=checkbox] {
     float: left;
     margin-top: 3px;
 }
-input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+input[type=checkbox]:checked ~ .sidebar-icon > .horizontal {
     transition: all 0.3s;
     box-sizing: border-box;
     opacity: 0;
 }
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-1 {
     transition: all 0.3s;
     box-sizing: border-box;
     transform: rotate(135deg);
     margin-top: 8px;
 }
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
     transition: all 0.3s;
     box-sizing: border-box;
     transform: rotate(-135deg);
@@ -139,8 +142,11 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     margin: 25px 50px 25px 50px;
 }
 
-.navbar-content {
+.sidebar-icon-content {
     color: white;
+    position: absolute;
+    display: flex;
+    align-content: center;
 }
 
 .stats-content {

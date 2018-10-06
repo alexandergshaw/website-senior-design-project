@@ -34,19 +34,21 @@
         <h2>{{ title }}</h2>
     </div>
 
-    <nav class="navbar navbar-dark bg-dark navbar-content">
-
-        <span class="navbar-brand mb-0 h1">Dashboard</span>
-        <span class="navbar-content">{{ user.username }}</span>
+    <nav class="navbar navbar-dark bg-dark flex-row-reverse">
+        <span class="navbar-username navbar-text">{{ user.username }}</span>
     </nav>
-
-    <div class="sidebar-content">
+    <span class="sidebar-icon-content">
         <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-        <label for="openSidebarMenu" class="sidebarIconToggle">
+        <label for="openSidebarMenu" class="sidebar-icon">
             <div class="spinner diagonal part-1"></div>
             <div class="spinner horizontal"></div>
             <div class="spinner diagonal part-2"></div>
         </label>
+    </span>
+
+    <div class="sidebar-content">
+        <div class="header"></div>
+
         <div id="sidebarMenu">
             <ul class="sidebarMenuInner">
               <li>
