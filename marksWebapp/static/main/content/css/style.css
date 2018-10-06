@@ -9,13 +9,14 @@ html, body {
     /*margin: 0;*/
     /*font-family: 'Varela Round', sans-serif;*/
 /*}*/
+
+.sidebar-icon-content {
+    position: absolute;
+    top: 17%;
+    left: 1%;
+}
 .sidebar-username {
     left: 90%;
-}
-
-.sidebar-content {
-    display: flex;
-    align-items: center;
 }
 
 .main {
@@ -73,15 +74,16 @@ input[type=checkbox] {
     box-sizing: border-box;
     display: none;
 }
-.sidebar-icon-content {
-    position: absolute;
-    top: 17%;
-    left: 1%;
-}
+
 .sidebar-icon {
     transition: all 0.3s;
+    box-sizing: border-box;
     cursor: pointer;
-    z-index: 1;
+    position: absolute;
+    z-index: 99;
+    top: 17%;
+    left: 1%;
+    height: 22px;
     width: 22px;
 }
 .spinner {
