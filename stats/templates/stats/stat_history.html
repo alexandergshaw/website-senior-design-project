@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<h1>All Recorded Measurements</h1>
+<ul>
+{% for data in all_stats %}
+    <li>{{ all_stats.power }} - {{ all_stats.current }} - {{ all_stats.voltage }} - {{ all_stats.avg_power }} - {{ all_stats.avg_current }} - {{ all_stats.avg_voltage }}</li>
+{% empty %}
+    <h3>No data yet.</h3>
+{% endfor %}
+</ul>
+</html>
