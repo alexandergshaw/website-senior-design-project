@@ -132,6 +132,7 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
 
 .measurements-row {
     display: flex;
+    justify-content: space-evenly;
 }
 
 .container {
@@ -142,6 +143,12 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
     max-width: 300px;
     max-height: 300px;
     margin: 25px 50px 25px 50px;
+}
+
+.card {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 10px;
 }
 
 .sidebar-icon-content {
