@@ -18,7 +18,7 @@ class Stats(models.Model):
         db_table = 'STATS'
 
     def get_absolute_url(self):
-        return reverse('stats:show_stats', kwargs={'stat_id': self.pk})
+        return reverse('stats:show_stats', kwargs={'user_id': self.user_id, 'stat_id': self.pk})
 
     def __str__(self):
         return 'Measurement number {}, measured on {}, for user {}.'.format(
