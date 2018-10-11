@@ -41,3 +41,19 @@ class DeleteStatsView(LoginRequiredMixin, View):
     def get(self, request, stat_id):
         Stats.objects.filter(pk=stat_id).delete()
         return redirect(reverse('index'))
+
+
+class ShowStatsHistoryView(LoginRequiredMixin, View):
+    model = Stats
+    all_stats = list()
+    def get(self, request, user_id):
+        # Query the DB
+        self.all_stats = Stats.objects.filter(user_id=user_id)
+
+        if len(self.all_stats) > 0:
+            # Create a context with all of the results from the query
+            context = { "all_stats": self.all_stats }
+        else:
+            # Create an empty context. The HTML will take care of things.
+            context = {}
+        return render(request, 'stats/stat_history.html', context)
