@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
 from .models import Stats
@@ -23,13 +24,20 @@ class ShowStatsView(LoginRequiredMixin, View):
             'avg_power': power_measurements['power__avg'],
             'avg_current': current_measurements['current__avg'],
             'avg_voltage': voltage_measurements['voltage__avg'],
+            'stat': stat_requested,
         }
         return render(request, 'stats/stat_view.html', context)
 
 
 class NoStatsView(LoginRequiredMixin, View):
-    def get(self):
+    def get(self, request):
         context = {
             'title': 'No Stats to show you!',
         }
-        return render(request, )
+        return render(request, 'stats/no_stats_to_show.html', context)
+
+
+class DeleteStatsView(LoginRequiredMixin, View):
+    def get(self, request, stat_id):
+        Stats.objects.filter(pk=stat_id).delete()
+        return redirect(reverse('index'))
