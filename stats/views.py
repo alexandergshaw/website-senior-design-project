@@ -16,7 +16,6 @@ class ShowStatsView(LoginRequiredMixin, View):
         current_measurements = all_stats.aggregate(Avg('current'))
         voltage_measurements = all_stats.aggregate(Avg('voltage'))
         stat_requested = Stats.objects.get(stat_id=stat_id)
-
         context = {
             'power': stat_requested.power,
             'current': stat_requested.current,
@@ -26,3 +25,11 @@ class ShowStatsView(LoginRequiredMixin, View):
             'avg_voltage': voltage_measurements['voltage__avg'],
         }
         return render(request, 'stats/stat_view.html', context)
+
+
+class NoStatsView(LoginRequiredMixin, View):
+    def get(self):
+        context = {
+            'title': 'No Stats to show you!',
+        }
+        return render(request, )

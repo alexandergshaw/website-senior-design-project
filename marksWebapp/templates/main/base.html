@@ -13,13 +13,16 @@
 </head>
 <body>
     <div>
-{#        <h2>{{ title }}</h2>#}
-        <h2>Test</h2>
-
+        <h2>{{ title }}</h2>
     </div>
 
     <nav class="navbar navbar-dark bg-dark flex-row-reverse">
-        <span class="navbar-text">{{ user.username }}</span>
+        {% if user.is_authenticated %}
+            <span class="navbar-text">{{ user.username }}</span>
+            <span class="navbar-text"><a href="{% url 'profiles:logout' %}">Logout</a></span>
+        {% else %}
+            <span class="navbar-text"><a href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log In</a></span>
+        {% endif %}
     </nav>
 
     <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
@@ -31,18 +34,27 @@
 
     <div id="sidebarMenu">
         <ul class="sidebarMenuInner">
-          <li>
-            <a href="#">Control</a>
-        </li>
-        <li>
-            <a href="#">Settings</a>
-        </li>
-        <li>
-            <a href="#">History</a>
-        </li>
-        <li>
-            <a href="#">Admin</a>
-        </li>
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ most_recent_url }}">Control</a>
+                </li>
+                <li>
+                    <a href="#">Settings</a>
+                </li>
+                <li>
+                    <a href="#">History</a>
+                </li>
+                <li>
+                    <a href="#">Admin</a>
+                </li>
+            {% else %}
+                <li>
+                    <p>Please <a style="color: royalblue" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log In</a> to View Options</p>
+                </li>
+            {% endif %}
         </ul>
     </div>
 
