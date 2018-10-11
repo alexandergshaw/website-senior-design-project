@@ -21,8 +21,11 @@ class Stats(models.Model):
         return reverse('stats:show_stats', kwargs={'user_id': self.user_id, 'stat_id': self.pk})
 
     def __str__(self):
-        return 'Measurement number {}, measured on {}, for user {}.'.format(
+        return 'Measurement number {}, measured on {}, for user {}, with voltage {}V, current {}A, and power {}W.'.format(
             self.pk,
             self.time_when_measured,
             self.user.username,
+            self.voltage,
+            self.current,
+            self.power
         )
