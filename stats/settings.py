@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
-    'chartjs',
 ]
 
 MIDDLEWARE = [
@@ -94,7 +93,7 @@ SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '51157231625-j5ai5purdtgm19teet0se57qqv6ifv13.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'rDFjilEBxUeXBX_EX6soQm34'
 
-ROOT_URLCONF = 'marksWebapp.urls'
+ROOT_URLCONF = 'stats.urls'
 
 TEMPLATES = [
     {
@@ -114,7 +113,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'marksWebapp.wsgi.application'
+WSGI_APPLICATION = 'stats.wsgi.application'
 
 
 # Database
