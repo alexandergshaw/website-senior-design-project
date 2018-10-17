@@ -9,7 +9,7 @@ from stats.models import Stats
 class Index(View):
     def get(self, request):
         if request.user.is_authenticated:
-            most_rec_measure = Stats.objects.filter(username=request.user.username)
+            most_rec_measure = Stats.objects.filter(user=request.user)
             if most_rec_measure.count() == 0:
                 most_rec_measure = None
             else:
@@ -18,7 +18,7 @@ class Index(View):
         else:
             most_rec_measure = None
         context = {
-            'title': 'Login',
+            'title': 'Home',
             'most_recent_url':
                 reverse(most_rec_measure.get_absolute_url()) if most_rec_measure else reverse('stats:no_stats'),
         }

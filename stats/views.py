@@ -1,5 +1,8 @@
+import csv
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
@@ -11,8 +14,8 @@ from .models import Stats
 
 
 class ShowStatsView(LoginRequiredMixin, View):
-    def get(self, request, user_id, stat_id):
-        all_stats = Stats.objects.filter(user_id=user_id)
+    def get(self, request, stat_id):
+        all_stats = Stats.objects.filter(user=request.user)
         power_measurements = all_stats.aggregate(Avg('power'))
         current_measurements = all_stats.aggregate(Avg('current'))
         voltage_measurements = all_stats.aggregate(Avg('voltage'))
@@ -46,9 +49,9 @@ class DeleteStatsView(LoginRequiredMixin, View):
 class ShowStatsHistoryView(LoginRequiredMixin, View):
     model = Stats
     all_stats = list()
-    def get(self, request, user_id):
+    def get(self, request):
         # Query the DB
-        self.all_stats = Stats.objects.filter(user_id=user_id)
+        self.all_stats = Stats.objects.filter(user=request.user)
 
         if len(self.all_stats) > 0:
             # Create a context with all of the results from the query
@@ -57,3 +60,21 @@ class ShowStatsHistoryView(LoginRequiredMixin, View):
             # Create an empty context. The HTML will take care of things.
             context = {}
         return render(request, 'stats/stat_history.html', context)
+
+
+class ExportStatsToExcelView(LoginRequiredMixin, View):
+    def get(self, request):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="{}_stats.csv"'.format(request.user.username)
+        writer = csv.writer(response)
+        writer.writerow(['Stat ID', 'Voltage', 'Current', 'Power', 'Time When Measured'])
+        stats = Stats.objects.filter(user=request.user).values_list(
+            'stat_id',
+            'voltage',
+            'current',
+            'power',
+            'time_when_measured',
+        )
+        for stat in stats:
+            writer.writerow(stat)
+        return response
