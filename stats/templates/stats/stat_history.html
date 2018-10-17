@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <h1>All Recorded Measurements</h1>
+<a class="btn btn-info" href="{% url 'stats:export_csv' %}">Export Data To Excel</a>
 <ul style="list-style: none;">
 <!--<li>Default Header Stuff</li> -->
 {% for data in all_stats %}
