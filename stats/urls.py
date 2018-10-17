@@ -9,5 +9,5 @@ urlpatterns = [
     path('no_stats/', views.NoStatsView.as_view(), name='no_stats'),
     path('<int:stat_id>/delete/', views.DeleteStatsView.as_view(), name='delete'),
     path('history/', views.ShowStatsHistoryView.as_view(), name='stats_history'),
-    path('export_csv/', views.ExportStatsToExcelView.as_view(), name='export_csv'),
+    path('export_excel/', views.ExportStatsToExcelView.as_view(), name='export_excel'),
 ]

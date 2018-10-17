@@ -19,7 +19,6 @@ class Index(View):
             most_rec_measure = None
         context = {
             'title': 'Home',
-            'most_recent_url':
-                reverse(most_rec_measure.get_absolute_url()) if most_rec_measure else reverse('stats:no_stats'),
+            'most_recent_url': most_rec_measure.get_absolute_url() if most_rec_measure else reverse('stats:no_stats'),
         }
         return render(request, 'main/index.html', context)
