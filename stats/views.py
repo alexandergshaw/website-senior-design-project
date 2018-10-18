@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.views import View
 
 from .models import Stats
-
+from .forms import filterForm
 
 # Create your views here.
 
@@ -49,13 +49,14 @@ class DeleteStatsView(LoginRequiredMixin, View):
 class ShowStatsHistoryView(LoginRequiredMixin, View):
     model = Stats
     all_stats = list()
+    form = filterForm()
     def get(self, request):
         # Query the DB
         self.all_stats = Stats.objects.filter(user=request.user)
 
         if len(self.all_stats) > 0:
             # Create a context with all of the results from the query
-            context = { "all_stats": self.all_stats }
+            context = { "all_stats": self.all_stats, "form" : self.form }
         else:
             # Create an empty context. The HTML will take care of things.
             context = {}
