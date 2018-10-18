@@ -4,14 +4,18 @@
 <!--<li>Default Header Stuff</li> -->
 {% if all_stats %}
     <a class="btn btn-info" href="{% url 'stats:export_excel' %}">Export Data To Excel</a>
+    <form method="post">
     {% include "stats/filter_form.html" %}
-    <ul style="list-style: none;">
+    </form>
+    <div class="main">
+    <ul style="list-style: none; text-align: left;">
     {% for data in all_stats %}
         <li>{{ data }}</li>
         <!-- <li>{{ data.user }} - {{ data.time_when_measured }} - {{ data.voltage }} - {{ data.current }} - {{ data.power }}</li> -->
     {% endfor %}
+    </ul>
+    </div>
 {% else %}
     <h3>No data yet.</h3>
 {% endif %}
-</ul>
 {% endblock %}
