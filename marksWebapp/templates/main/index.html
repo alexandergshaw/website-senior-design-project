@@ -6,23 +6,26 @@
             Hello {{ user.username }}, what would you like to do?
         </div>
         <div class="card-row">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        View Your Measurements
-                    </h5>
-                    <img class="card-image" src="{% static 'main/content/images/baseline-person-24px.svg' %}">
+            <a href="#">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            View Your Measurements
+                        </h5>
+                        <img class="card-image" src="{% static 'main/content/images/baseline-person-24px.svg' %}">
+                    </div>
                 </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        View All Users' Measurements
-                    </h5>
-                    <img class="card-image" src="{% static 'main/content/images/baseline-group-24px.svg' %}">
+            </a>
+            <a href="#">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            View All Users' Measurements
+                        </h5>
+                        <img class="card-image" src="{% static 'main/content/images/baseline-group-24px.svg' %}">
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
 
     {% else %}

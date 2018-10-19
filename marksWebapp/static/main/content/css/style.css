@@ -5,7 +5,7 @@ html, body {
 }
 
 .navbar {
-    height: 56px;
+    min-height: 56px;
 }
 
 .login-content {
