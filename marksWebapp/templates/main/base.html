@@ -34,39 +34,6 @@
         {% endif %}
     </nav>
 
-    <!--<input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">-->
-    <!--<label for="openSidebarMenu" class="sidebar-icon">-->
-        <!--<div class="spinner diagonal part-1"></div>-->
-        <!--<div class="spinner horizontal"></div>-->
-        <!--<div class="spinner diagonal part-2"></div>-->
-    <!--</label>-->
-
-    <!--<div id="sidebarMenu">-->
-        <!--<ul class="sidebarMenuInner">-->
-            <!--{% if user.is_authenticated %}-->
-                <!--<li>-->
-                    <!--<a href="{% url 'index' %}">Home</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="{{ most_recent_url }}">Control</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="#">Settings</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="{% url 'stats:stats_history' %}">History</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="#">Admin</a>-->
-                <!--</li>-->
-            <!--{% else %}-->
-                <!--<li>-->
-                    <!--<p>Please <a style="color: royalblue" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log In</a> to View Options</p>-->
-                <!--</li>-->
-            <!--{% endif %}-->
-        <!--</ul>-->
-    <!--</div>-->
-
     <div class="container">
         {% block content %}
         {% endblock %}
