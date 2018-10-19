@@ -4,6 +4,30 @@ html, body {
     height: 100%;
 }
 
+.navbar {
+    min-height: 56px;
+}
+
+.login-content {
+    text-align: center;
+}
+
+.card-image {
+    display: block;
+    margin: auto auto auto auto;
+    width: 50%;
+}
+
+.display-1 {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.display-3 {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
 .navbar-content {
     color: white;
 }
@@ -54,15 +78,7 @@ html, body {
     cursor: pointer;
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
-.sidebarMenuInner li span{
-    display: block;
-    color: rgba(255, 255, 255, 0.50);
-}
-.sidebarMenuInner li a{
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
-}
+
 input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translateX(0);
 }
@@ -130,14 +146,18 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
     margin-top: -9px;
 }
 
-.measurements-row {
+.card-row {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
-.container {
+.card-title {
     text-align: center;
+}
+
+.container {
+    /*text-align: center;*/
     justify-content: center;
     min-width: 250px;
     min-height: 250px;
@@ -184,33 +204,5 @@ a, a:hover, a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    display: block;
-}
-#sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
-}
-
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
-}
-ul ul a {
-    padding-left: 30px !important;
     background: #6d7fcc;
 }
