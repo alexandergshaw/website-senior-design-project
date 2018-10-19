@@ -4,9 +4,28 @@ html, body {
     height: 100%;
 }
 
+.navbar {
+    height: 56px;
+}
+
+.login-content {
+    text-align: center;
+}
+
+.card-image {
+    display: block;
+    margin: auto auto auto auto;
+    width: 50%;
+}
+
 .display-1 {
     text-align: center;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
+}
+
+.display-3 {
+    text-align: center;
+    margin-bottom: 2%;
 }
 
 .navbar-content {

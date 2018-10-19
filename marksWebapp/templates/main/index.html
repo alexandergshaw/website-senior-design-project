@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load static %}
 {% block content %}
     {% if user.is_authenticated %}
         <div class="display-1">
@@ -10,6 +11,7 @@
                     <h5 class="card-title">
                         View Your Measurements
                     </h5>
+                    <img class="card-image" src="{% static 'main/content/images/baseline-person-24px.svg' %}">
                 </div>
             </div>
 
@@ -18,16 +20,20 @@
                     <h5 class="card-title">
                         View All Users' Measurements
                     </h5>
+                    <img class="card-image" src="{% static 'main/content/images/baseline-group-24px.svg' %}">
                 </div>
             </div>
         </div>
 
     {% else %}
-        <div>
-            Hello! Welcome to the Resistor Bank Statistic website.
-            Please Log In to analyze your past measurements. When logging in,
-            please choose the Google Account that pertains to your S&T email.
+        <div class="login-content">
+            <div class="display-1">
+                Welcome to the Resistor Bank Statistics website!
+            </div>
+            <div class="display-3">
+                Please log in using your Missouri S&T email account.
+            </div>
+            <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Let's Look at Some Measurements, Baby</a>
         </div>
-        <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log Into Website</a>
     {% endif %}
 {% endblock %}
