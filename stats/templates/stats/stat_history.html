@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<h1>All Recorded Measurements</h1>
+<a class="btn btn-info" href="{% url 'stats:export_excel' %}">Export Data To Excel</a>
+<ul style="list-style: none;">
+<!--<li>Default Header Stuff</li> -->
+{% for data in all_stats %}
+    <li>{{ data }}</li>
+    <!-- <li>{{ data.user }} - {{ data.time_when_measured }} - {{ data.voltage }} - {{ data.current }} - {{ data.power }}</li> -->
+{% empty %}
+    <h3>No data yet.</h3>
+{% endfor %}
+</ul>
+</html>

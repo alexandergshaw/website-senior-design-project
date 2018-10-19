@@ -129,8 +129,8 @@ DATABASES = {
         'HOST': 'tcp:marksgroup.database.windows.net',
         'PORT': '1433',
         'OPTIONS': {
-            'driver':'ODBC Driver 17 for SQL Server',
-            'MARS_Connection':'True',
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'MARS_Connection': 'True',
         }
     }
 }
@@ -177,5 +177,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static').replace('\\', '/')]
 
 LOGIN_URL = 'account:login'
+
+LOGIN_REDIRECT_URL = 'index'
 
 LOGOUT_REDIRECT_URL = 'index'
