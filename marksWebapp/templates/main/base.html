@@ -16,47 +16,58 @@
         <h2>{{ title }}</h2>
     </div>
 
-    <nav class="navbar navbar-dark bg-dark flex-row-reverse">
+    <nav class="navbar navbar-dark bg-dark flex-row">
         {% if user.is_authenticated %}
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Control</a>
+                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" href="#">History</a>
+                <a class="dropdown-item" href="#">Admin</a>
+                <a class="dropdown-item" href="{% url 'profiles:logout' %}">Logout</a>
+              </div>
+            </div>
             <span class="navbar-text">{{ user.username }}</span>
-            <span class="navbar-text"><a href="{% url 'profiles:logout' %}">Logout</a></span>
         {% else %}
             <span class="navbar-text"><a href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log In</a></span>
         {% endif %}
     </nav>
 
-    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-    <label for="openSidebarMenu" class="sidebar-icon">
-        <div class="spinner diagonal part-1"></div>
-        <div class="spinner horizontal"></div>
-        <div class="spinner diagonal part-2"></div>
-    </label>
+    <!--<input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">-->
+    <!--<label for="openSidebarMenu" class="sidebar-icon">-->
+        <!--<div class="spinner diagonal part-1"></div>-->
+        <!--<div class="spinner horizontal"></div>-->
+        <!--<div class="spinner diagonal part-2"></div>-->
+    <!--</label>-->
 
-    <div id="sidebarMenu">
-        <ul class="sidebarMenuInner">
-            {% if user.is_authenticated %}
-                <li>
-                    <a href="{% url 'index' %}">Home</a>
-                </li>
-                <li>
-                    <a href="{{ most_recent_url }}">Control</a>
-                </li>
-                <li>
-                    <a href="#">Settings</a>
-                </li>
-                <li>
-                    <a href="{% url 'stats:stats_history' %}">History</a>
-                </li>
-                <li>
-                    <a href="#">Admin</a>
-                </li>
-            {% else %}
-                <li>
-                    <p>Please <a style="color: royalblue" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log In</a> to View Options</p>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
+    <!--<div id="sidebarMenu">-->
+        <!--<ul class="sidebarMenuInner">-->
+            <!--{% if user.is_authenticated %}-->
+                <!--<li>-->
+                    <!--<a href="{% url 'index' %}">Home</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="{{ most_recent_url }}">Control</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#">Settings</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="{% url 'stats:stats_history' %}">History</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#">Admin</a>-->
+                <!--</li>-->
+            <!--{% else %}-->
+                <!--<li>-->
+                    <!--<p>Please <a style="color: royalblue" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log In</a> to View Options</p>-->
+                <!--</li>-->
+            <!--{% endif %}-->
+        <!--</ul>-->
+    <!--</div>-->
 
     <div class="container">
         {% block content %}
