@@ -6,6 +6,7 @@ html, body {
 
 .display-1 {
     text-align: center;
+    margin-bottom: 5%;
 }
 
 .navbar-content {
@@ -126,10 +127,14 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
     margin-top: -9px;
 }
 
-.measurements-row {
+.card-row {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+}
+
+.card-title {
+    text-align: center;
 }
 
 .container {

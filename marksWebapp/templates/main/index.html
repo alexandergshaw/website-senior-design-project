@@ -1,19 +1,33 @@
 {% extends 'main/base.html' %}
 {% block content %}
-    {% if not user.is_authenticated %}
+    {% if user.is_authenticated %}
+        <div class="display-1">
+            Hello {{ user.username }}, what would you like to do?
+        </div>
+        <div class="card-row">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        View Your Measurements
+                    </h5>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        View All Users' Measurements
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
         <div>
             Hello! Welcome to the Resistor Bank Statistic website.
             Please Log In to analyze your past measurements. When logging in,
             please choose the Google Account that pertains to your S&T email.
         </div>
         <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log Into Website</a>
-    {% else %}
-        <div class="display-1">
-            Hello {{ user.username }}, what would you like to do?
-        </div>
-        <div>
-            From the side-menu, you can access any page on our website any time you like.
-            Also, to logout click the <b>Logout</b> text beside your username on the top bar.
-        </div>
     {% endif %}
 {% endblock %}
