@@ -31,8 +31,6 @@
               </div>
             </div>
             <span class="navbar-text">{{ user.username }}</span>
-        {% else %}
-            <span class="navbar-text"><a href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log In</a></span>
         {% endif %}
     </nav>
 
