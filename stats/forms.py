@@ -7,17 +7,17 @@ choices = (
 )
 
 class filterForm(forms.Form):
-    date_time_cb = forms.BooleanField()
-    voltage_cb = forms.BooleanField()
-    current_cb = forms.BooleanField()
-    power_cb = forms.BooleanField()
+    date_time_cb = forms.BooleanField(required=False)
+    voltage_cb = forms.BooleanField(required=False)
+    current_cb = forms.BooleanField(required=False)
+    power_cb = forms.BooleanField(required=False)
 
     date_time_select = forms.ChoiceField(choices=choices)
     voltage_select = forms.ChoiceField(choices=choices)
     current_select = forms.ChoiceField(choices=choices)
     power_select = forms.ChoiceField(choices=choices)
 
-    date_time_tb = forms.DateTimeField()
-    voltage_tb = forms.FloatField()
-    current_tb = forms.FloatField()
-    power_tb = forms.FloatField()
+    date_time_tb = forms.DateTimeField(required=False)
+    voltage_tb = forms.FloatField(required=False)
+    current_tb = forms.FloatField(required=False)
+    power_tb = forms.FloatField(required=False)
