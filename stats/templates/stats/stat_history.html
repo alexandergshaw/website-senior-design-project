@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'main/content/js/history_filter.js' %}">
 <h1>All Recorded Measurements</h1>
@@ -9,7 +10,7 @@
     {% include "stats/filter_form.html" %}
     </form>
     <div class="main">
-    <ul style="list-style: none; text-align: left;">
+    <ul id="stats_list" style="list-style: none; text-align: left;">
     {% for data in all_stats %}
         <li>{{ data }}</li>
         <!-- <li>{{ data.user }} - {{ data.time_when_measured }} - {{ data.voltage }} - {{ data.current }} - {{ data.power }}</li> -->

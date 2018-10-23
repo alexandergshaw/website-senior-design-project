@@ -1,4 +1,5 @@
 import csv
+import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg
@@ -6,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
+from django.core.serializers.json import DjangoJSONEncoder
 
 from .models import Stats
 from .forms import filterForm
