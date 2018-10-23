@@ -156,6 +156,10 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
     text-align: center;
 }
 
+.card-subtitle {
+    text-align: center;
+}
+
 .container {
     /*text-align: center;*/
     justify-content: center;
@@ -205,4 +209,10 @@ a, a:hover, a:focus {
 #sidebar .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
+}
+
+.stat-view-delete {
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
 }
