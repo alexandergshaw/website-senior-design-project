@@ -1,14 +1,54 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'main/content/js/history_filter.js' %}">
+{#<link rel="stylesheet" href="{% static 'main/content/js/history_filter.js' %}">#}
+<script >
+{#src="{% static 'main/content/js/history_filter.js' %}"#}
+
+    function test() {
+        var the_stats = JSON.parse('{{ all_stats|escapejs }}');
+
+        let filtered_stats = the_stats.filter(stat => stat[3] >= 4);
+        document.getElementById("stats_list").innerHTML = filtered_stats;
+    }
+
+</script>
+
 <h1>All Recorded Measurements</h1>
 <!--<li>Default Header Stuff</li> -->
 {% if all_stats %}
     <a class="btn btn-info" href="{% url 'stats:export_excel' %}">Export Data To Excel</a>
-    <form method="POST">
-    {% include "stats/filter_form.html" %}
+    <form>
+{#    {% include "stats/filter_form.html" %}#}
+        <table align="center">
+            <tr>
+                <td id="date_cb" style="min-width: 35px;">{{ form.date_time_cb }}</td>
+                <td><h4>Date and Time</h4></td>
+                <td>{{ form.date_time_select }}</td>
+                <td>{{ form.date_time_tb }}</td>
+            </tr>
+            <tr>
+                <td id="voltage_cb" style="min-width: 35px;">{{ form.voltage_cb }}</td>
+                <td><h4>Voltage</h4></td>
+                <td>{{ form.voltage_select }}</td>
+                <td>{{ form.voltage_tb }}</td>
+            </tr>
+            <tr>
+                <td id="current_cb" style="min-width: 35px;">{{ form.current_cb }}</td>
+                <td><h4>Current</h4></td>
+                <td>{{ form.current_select }}</td>
+                <td>{{ form.current_tb }}</td>
+            </tr>
+            <tr>
+                <td id="power_cb" style="min-width: 35px;">{{ form.power_cb }}</td>
+                <td><h4>Power</h4></td>
+                <td>{{ form.power_select }}</td>
+                <td>{{ form.power_tb }}</td>
+            </tr>
+        </table>
+        <input type="button" align="center" onclick="test()">
     </form>
+
     <div class="main">
     <ul id="stats_list" style="list-style: none; text-align: left;">
     {% for data in all_stats %}
@@ -17,6 +57,7 @@
     {% endfor %}
     </ul>
     </div>
+
 {% else %}
     <h3>No data yet.</h3>
 {% endif %}

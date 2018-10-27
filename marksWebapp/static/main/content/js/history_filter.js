@@ -1,3 +1,6 @@
-var the_stats = "{{ all_stats }}";
+function test() {
+    var the_stats = {{ all_stats }};
 
-document.getElementById("stats_list").innerHTML = the_stats.filter(stats => "{{stats.voltage}}" >= 4.0);
+    let filtered_stats = the_stats.filter(stat => stat.voltage >= 4);
+    document.getElementById("stats_list").innerHTML(filtered_stats);
+}
