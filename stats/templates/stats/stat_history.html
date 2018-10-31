@@ -13,10 +13,10 @@
     }
 
 </script>
-
-<h1>All Recorded Measurements</h1>
+<h1 align="center">All Recorded Measurements</h1>
 <!--<li>Default Header Stuff</li> -->
 {% if all_stats %}
+    <div align="center">
     <a class="btn btn-info" href="{% url 'stats:export_excel' %}">Export Data To Excel</a>
     <form>
 {#    {% include "stats/filter_form.html" %}#}
@@ -46,8 +46,9 @@
                 <td>{{ form.power_tb }}</td>
             </tr>
         </table>
-        <input type="button" align="center" onclick="test()">
+        <input value="Filter" type="button" align="center" onclick="test()">
     </form>
+    </div>
 
     <div class="main">
     <ul id="stats_list" style="list-style: none; text-align: left;">

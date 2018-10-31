@@ -54,8 +54,8 @@ class ShowStatsHistoryView(LoginRequiredMixin, View):
     form = filterForm()
     def get(self, request):
         # Query the DB
-        all_stats = Stats.objects.filter(user=request.user).values_list('pk', 'time_when_measured', 'user', 'voltage', 'current', 'power')
-        self.all_stats = json.dumps(list(all_stats), cls=DjangoJSONEncoder)
+        self.all_stats = Stats.objects.filter(user=request.user) # .values_list('pk', 'time_when_measured', 'user', 'voltage', 'current', 'power')
+        # self.all_stats = json.dumps(list(all_stats), cls=DjangoJSONEncoder)
 
         if len(self.all_stats) > 0:
             # Create a context with all of the results from the query

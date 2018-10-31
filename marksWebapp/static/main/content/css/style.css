@@ -86,7 +86,6 @@ input[type="checkbox"]:checked ~ #sidebarMenu {
 input[type=checkbox] {
     transition: all 0.3s;
     box-sizing: border-box;
-    /*display: none;*/
 }
 
 .sidebar-icon {
