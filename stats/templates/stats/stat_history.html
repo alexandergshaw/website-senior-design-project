@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'main/base.html' %}
+{% block content %}
 <h1>All Recorded Measurements</h1>
 <a class="btn btn-info" href="{% url 'stats:export_excel' %}">Export Data To Excel</a>
 <ul style="list-style: none;">
@@ -11,4 +11,4 @@
     <h3>No data yet.</h3>
 {% endfor %}
 </ul>
-</html>
+{% endblock %}
