@@ -1,27 +1,29 @@
+{% csrf_token %}
 <table align="center">
     <tr>
-        <td style="min-width: 35px;">{{ form.date_time_cb }}</td>
+        <td id="date_cb" style="min-width: 35px;">{{ form.date_time_cb }}</td>
         <td><h4>Date and Time</h4></td>
         <td>{{ form.date_time_select }}</td>
         <td>{{ form.date_time_tb }}</td>
     </tr>
     <tr>
-        <td style="min-width: 35px;">{{ form.voltage_cb }}</td>
+        <td id="voltage_cb" style="min-width: 35px;">{{ form.voltage_cb }}</td>
         <td><h4>Voltage</h4></td>
         <td>{{ form.voltage_select }}</td>
         <td>{{ form.voltage_tb }}</td>
     </tr>
     <tr>
-        <td style="min-width: 35px;">{{ form.current_cb }}</td>
+        <td id="current_cb" style="min-width: 35px;">{{ form.current_cb }}</td>
         <td><h4>Current</h4></td>
         <td>{{ form.current_select }}</td>
         <td>{{ form.current_tb }}</td>
     </tr>
     <tr>
-        <td style="min-width: 35px;">{{ form.power_cb }}</td>
+        <td id="power_cb" style="min-width: 35px;">{{ form.power_cb }}</td>
         <td><h4>Power</h4></td>
         <td>{{ form.power_select }}</td>
         <td>{{ form.power_tb }}</td>
     </tr>
 </table>
-<input type="Submit">
+<input type="button" align="center" onclick="test()">
+{#type="Submit" #}

@@ -1,4 +1,5 @@
 import csv
+import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg
@@ -6,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
+from django.core.serializers.json import DjangoJSONEncoder
 
 from .models import Stats
 from .forms import filterForm
@@ -52,7 +54,8 @@ class ShowStatsHistoryView(LoginRequiredMixin, View):
     form = filterForm()
     def get(self, request):
         # Query the DB
-        self.all_stats = Stats.objects.filter(user=request.user)
+        all_stats = Stats.objects.filter(user=request.user).values_list('pk', 'time_when_measured', 'user', 'voltage', 'current', 'power')
+        self.all_stats = json.dumps(list(all_stats), cls=DjangoJSONEncoder)
 
         if len(self.all_stats) > 0:
             # Create a context with all of the results from the query

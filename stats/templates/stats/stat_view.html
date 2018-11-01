@@ -10,7 +10,7 @@
                             Voltage
                         </h1>
                         <h2 class="card-subtitle mb-2 text-muted">
-                            {{ voltage }}
+                            {{ voltage }} V
                         </h2>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                             Current
                         </h1>
                         <h2 class="card-subtitle mb-2 text-muted">
-                            {{ current }}
+                            {{ current }} A
                         </h2>
                     </div>
                 </div>
@@ -31,14 +31,48 @@
                             Power
                         </h1>
                         <h2 class="card-subtitle mb-2 text-muted">
-                            {{ power }}
+                            {{ power }} W
                         </h2>
                     </div>
                 </div>
             </div>
         </div>
-    <p></p>
-    <a class="btn btn-danger" href="{% url 'stats:delete' stat_id=stat.pk %}">Delete Stat</a>
+        <div>
+            <div class="card-row">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">
+                            Average Voltage
+                        </h1>
+                        <h2 class="card-subtitle mb-2 text-muted">
+                            {{ avg_voltage }} V
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">
+                            Average Current
+                        </h1>
+                        <h2 class="card-subtitle mb-2 text-muted">
+                            {{ avg_current }} A
+                        </h2>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">
+                            Average Power
+                        </h1>
+                        <h2 class="card-subtitle mb-2 text-muted">
+                            {{ avg_power }} W
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="stat-view-delete">
+        <a class="btn btn-danger" href="{% url 'stats:delete' stat_id=stat.pk %}">Delete This Stat</a>
+    </div>
 {% endblock %}
-{#    </body>#}
-{#</html>#}
