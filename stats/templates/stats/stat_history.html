@@ -8,8 +8,8 @@
     function test() {
         var the_stats = JSON.parse('{{ all_stats|escapejs }}');
 
-        if(document.getElementById("id_voltage_cb").checked === true){
-            var tb_value = parseFloat(document.getElementById("id_voltage_tb").value);
+        if(document.getElementById("id_voltage_cb").checked === true && document.getElementById("id_voltage_tb").value !== ""){
+            let tb_value = parseFloat(document.getElementById("id_voltage_tb").value);
             switch(document.getElementById("id_voltage_select").value){
                 case 'less_than':
                     the_stats = the_stats.filter(stat => stat[3] < tb_value);
@@ -23,8 +23,8 @@
             }
         }
 
-        if(document.getElementById("id_current_cb").checked === true){
-            var tb_value = parseFloat(document.getElementById("id_current_tb").value);
+        if(document.getElementById("id_current_cb").checked === true && document.getElementById("id_current_tb").value !== ""){
+            let tb_value = parseFloat(document.getElementById("id_current_tb").value);
             switch(document.getElementById("id_current_select").value){
                 case 'less_than':
                     the_stats = the_stats.filter(stat => stat[3] < tb_value);
@@ -38,8 +38,8 @@
             }
         }
 
-        if(document.getElementById("id_power_cb").checked === true){
-            var tb_value = parseFloat(document.getElementById("id_power_tb").value);
+        if(document.getElementById("id_power_cb").checked === true && document.getElementById("id_power_tb").value !== ""){
+            let tb_value = parseFloat(document.getElementById("id_power_tb").value);
             switch(document.getElementById("id_power_select").value){
                 case 'less_than':
                     the_stats = the_stats.filter(stat => stat[3] < tb_value);
@@ -54,7 +54,12 @@
         }
 
         document.getElementById("stats_list").innerHTML = "";
-        document.getElementById("stats_list").innerHTML += the_stats;
+        {#document.getElementById("stats_list").innerHTML += the_stats;#}
+        document.getElementById("stats_list").innerHTML += "<tr><b><td>Data and Time</td><td>Voltage</td><td>Current</td><td>Power</td></b></tr>";
+        for(let i = 0; i < the_stats.length; i++){
+            document.getElementById("stats_list").innerHTML += "<tr><td>" + the_stats[i][1] + "</td><td>" + the_stats[i][3] + "</td><td>" + the_stats[i][4] + "</td><td>" + the_stats[i][5] + "</td></tr>";
+        }
+
     }
 
 </script>
@@ -95,14 +100,14 @@
     </form>
     </div>
 
-    <div class="main">
+    <div class="main" align="center">
     <body onload="test()">
-    <ul id="stats_list" style="list-style: none; text-align: left;">
+    <table id="stats_list" style="list-style: none; text-align: center;">
 {#    {% for data in all_stats %}#}
 {#        <li>{{ data }}</li>#}
 {#        <!-- <li>{{ data.user }} - {{ data.time_when_measured }} - {{ data.voltage }} - {{ data.current }} - {{ data.power }}</li> -->#}
 {#    {% endfor %}#}
-    </ul>
+    </table>
     </body>
     </div>
 
