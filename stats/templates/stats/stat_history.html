@@ -42,13 +42,13 @@
             let tb_value = parseFloat(document.getElementById("id_current_tb").value);
             switch(document.getElementById("id_current_select").value){
                 case 'less_than':
-                    the_stats = the_stats.filter(stat => stat[3] < tb_value);
+                    the_stats = the_stats.filter(stat => stat[4] < tb_value);
                     break;
                 case 'equal':
-                    the_stats = the_stats.filter(stat => stat[3] === tb_value);
+                    the_stats = the_stats.filter(stat => stat[4] === tb_value);
                     break;
                 case 'greater_than':
-                    the_stats = the_stats.filter(stat => stat[3] > tb_value);
+                    the_stats = the_stats.filter(stat => stat[4] > tb_value);
                     break;
             }
         }
@@ -57,13 +57,13 @@
             let tb_value = parseFloat(document.getElementById("id_power_tb").value);
             switch(document.getElementById("id_power_select").value){
                 case 'less_than':
-                    the_stats = the_stats.filter(stat => stat[3] < tb_value);
+                    the_stats = the_stats.filter(stat => stat[5] < tb_value);
                     break;
                 case 'equal':
-                    the_stats = the_stats.filter(stat => stat[3] === tb_value);
+                    the_stats = the_stats.filter(stat => stat[5] === tb_value);
                     break;
                 case 'greater_than':
-                    the_stats = the_stats.filter(stat => stat[3] > tb_value);
+                    the_stats = the_stats.filter(stat => stat[5] > tb_value);
                     break;
             }
         }
