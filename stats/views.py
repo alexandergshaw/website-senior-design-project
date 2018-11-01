@@ -26,9 +26,9 @@ class ShowStatsView(LoginRequiredMixin, View):
             'power': stat_requested.power,
             'current': stat_requested.current,
             'voltage': stat_requested.voltage,
-            'avg_power': power_measurements['power__avg'],
-            'avg_current': current_measurements['current__avg'],
-            'avg_voltage': voltage_measurements['voltage__avg'],
+            'avg_power': '{0:.4f}'.format(power_measurements['power__avg']),
+            'avg_current': '{0:.4f}'.format(current_measurements['current__avg']),
+            'avg_voltage': '{0:.4f}'.format(voltage_measurements['voltage__avg']),
             'stat': stat_requested,
         }
         return render(request, 'stats/stat_view.html', context)
