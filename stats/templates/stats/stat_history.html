@@ -8,8 +8,53 @@
     function test() {
         var the_stats = JSON.parse('{{ all_stats|escapejs }}');
 
-        let filtered_stats = the_stats.filter(stat => stat[3] >= 4);
-        document.getElementById("stats_list").innerHTML = filtered_stats;
+        if(document.getElementById("id_voltage_cb").checked === true){
+            var tb_value = parseFloat(document.getElementById("id_voltage_tb").value);
+            switch(document.getElementById("id_voltage_select").value){
+                case 'less_than':
+                    the_stats = the_stats.filter(stat => stat[3] < tb_value);
+                    break;
+                case 'equal':
+                    the_stats = the_stats.filter(stat => stat[3] === tb_value);
+                    break;
+                case 'greater_than':
+                    the_stats = the_stats.filter(stat => stat[3] > tb_value);
+                    break;
+            }
+        }
+
+        if(document.getElementById("id_current_cb").checked === true){
+            var tb_value = parseFloat(document.getElementById("id_current_tb").value);
+            switch(document.getElementById("id_current_select").value){
+                case 'less_than':
+                    the_stats = the_stats.filter(stat => stat[3] < tb_value);
+                    break;
+                case 'equal':
+                    the_stats = the_stats.filter(stat => stat[3] === tb_value);
+                    break;
+                case 'greater_than':
+                    the_stats = the_stats.filter(stat => stat[3] > tb_value);
+                    break;
+            }
+        }
+
+        if(document.getElementById("id_power_cb").checked === true){
+            var tb_value = parseFloat(document.getElementById("id_power_tb").value);
+            switch(document.getElementById("id_power_select").value){
+                case 'less_than':
+                    the_stats = the_stats.filter(stat => stat[3] < tb_value);
+                    break;
+                case 'equal':
+                    the_stats = the_stats.filter(stat => stat[3] === tb_value);
+                    break;
+                case 'greater_than':
+                    the_stats = the_stats.filter(stat => stat[3] > tb_value);
+                    break;
+            }
+        }
+
+        document.getElementById("stats_list").innerHTML = "";
+        document.getElementById("stats_list").innerHTML += the_stats;
     }
 
 </script>
@@ -51,12 +96,14 @@
     </div>
 
     <div class="main">
+    <body onload="test()">
     <ul id="stats_list" style="list-style: none; text-align: left;">
-    {% for data in all_stats %}
-        <li>{{ data }}</li>
-        <!-- <li>{{ data.user }} - {{ data.time_when_measured }} - {{ data.voltage }} - {{ data.current }} - {{ data.power }}</li> -->
-    {% endfor %}
+{#    {% for data in all_stats %}#}
+{#        <li>{{ data }}</li>#}
+{#        <!-- <li>{{ data.user }} - {{ data.time_when_measured }} - {{ data.voltage }} - {{ data.current }} - {{ data.power }}</li> -->#}
+{#    {% endfor %}#}
     </ul>
+    </body>
     </div>
 
 {% else %}
