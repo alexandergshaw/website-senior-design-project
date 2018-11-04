@@ -14,7 +14,8 @@ from .models import Stats
 
 
 class ShowStatsView(LoginRequiredMixin, View):
-    def get(self, request, stat_id):
+    @staticmethod
+    def get(request, stat_id):
         all_stats = Stats.objects.filter(user=request.user)
         power_measurements = all_stats.aggregate(Avg('power'))
         current_measurements = all_stats.aggregate(Avg('current'))
@@ -33,7 +34,8 @@ class ShowStatsView(LoginRequiredMixin, View):
 
 
 class NoStatsView(LoginRequiredMixin, View):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         context = {
             'title': 'No Stats to show you!',
         }
@@ -41,21 +43,21 @@ class NoStatsView(LoginRequiredMixin, View):
 
 
 class DeleteStatsView(LoginRequiredMixin, View):
-    def get(self, request, stat_id):
+    @staticmethod
+    def get(request, stat_id):
         Stats.objects.filter(pk=stat_id).delete()
-        return redirect(reverse('index'))
+        return redirect(reverse('stats:stats_history'))
 
 
 class ShowStatsHistoryView(LoginRequiredMixin, View):
-    model = Stats
-    all_stats = list()
-    def get(self, request):
+    @staticmethod
+    def get(request):
         # Query the DB
-        self.all_stats = Stats.objects.filter(user=request.user)
+        all_stats = Stats.objects.filter(user=request.user)
 
-        if len(self.all_stats) > 0:
+        if all_stats.exists():
             # Create a context with all of the results from the query
-            context = { "all_stats": self.all_stats }
+            context = { "all_stats": all_stats }
         else:
             # Create an empty context. The HTML will take care of things.
             context = {}
@@ -63,7 +65,8 @@ class ShowStatsHistoryView(LoginRequiredMixin, View):
 
 
 class ExportStatsToExcelView(LoginRequiredMixin, View):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="{}_stats.csv"'.format(request.user.username)
         writer = csv.writer(response)

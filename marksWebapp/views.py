@@ -7,14 +7,15 @@ from stats.models import Stats
 
 
 class Index(View):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         if request.user.is_authenticated:
             most_rec_measure = Stats.objects.filter(user=request.user)
-            if most_rec_measure.count() == 0:
-                most_rec_measure = None
-            else:
+            if most_rec_measure.exists():
                 max_id = most_rec_measure.aggregate(Max('stat_id'))['stat_id__max']
                 most_rec_measure = most_rec_measure.get(pk=max_id)
+            else:
+                most_rec_measure = None
         else:
             most_rec_measure = None
         context = {
