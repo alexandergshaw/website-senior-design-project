@@ -23,9 +23,9 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="{% url 'index' %}">Home</a>
-                <a class="dropdown-item" href="{{ user.profile.get_absolute_url }}">Your Profile</a>
                 <a class="dropdown-item" href="{{ most_recent_url }}">Most Recent Measurement</a>
                 <a class="dropdown-item" href="{% url 'stats:stats_history' %}">Measurement History</a>
+                <a class="dropdown-item" href="{{ user.profile.get_absolute_url }}">Settings</a>
                 <a class="dropdown-item" href="{% url 'profiles:logout' %}">Logout</a>
               </div>
             </div>
