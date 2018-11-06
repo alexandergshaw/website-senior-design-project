@@ -2,21 +2,31 @@ import csv
 import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import transaction
 from django.db.models import Avg
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.core.serializers.json import DjangoJSONEncoder
+
+from marksWebapp.utils import get_most_recent_measurement_url
 
 from .models import Stats
 from .forms import filterForm
 
-# Create your views here.
+show_stats_decorators = [transaction.atomic]
+no_stats_decorators = [transaction.atomic]
+delete_stat_decorators = [transaction.atomic]
+stat_history_decorators = [transaction.atomic]
+export_stats_decorators = [transaction.atomic]
 
 
+@method_decorator(show_stats_decorators, name='dispatch')
 class ShowStatsView(LoginRequiredMixin, View):
-    def get(self, request, stat_id):
+    @staticmethod
+    def get(request, stat_id):
         all_stats = Stats.objects.filter(user=request.user)
         power_measurements = all_stats.aggregate(Avg('power'))
         current_measurements = all_stats.aggregate(Avg('current'))
@@ -30,44 +40,46 @@ class ShowStatsView(LoginRequiredMixin, View):
             'avg_current': '{0:.4f}'.format(current_measurements['current__avg']),
             'avg_voltage': '{0:.4f}'.format(voltage_measurements['voltage__avg']),
             'stat': stat_requested,
+            'most_recent_url': get_most_recent_measurement_url(request),
         }
         return render(request, 'stats/stat_view.html', context)
 
 
+@method_decorator(no_stats_decorators, name='dispatch')
 class NoStatsView(LoginRequiredMixin, View):
-    def get(self, request):
-        context = {
-            'title': 'No Stats to show you!',
-        }
+    @staticmethod
+    def get(request):
+        context = {'title': 'No Stats to show you!', 'most_recent_url': get_most_recent_measurement_url(request)}
         return render(request, 'stats/no_stats_to_show.html', context)
 
 
+@method_decorator(delete_stat_decorators, name='dispatch')
 class DeleteStatsView(LoginRequiredMixin, View):
-    def get(self, request, stat_id):
+    @staticmethod
+    def get(request, stat_id):
         Stats.objects.filter(pk=stat_id).delete()
-        return redirect(reverse('index'))
+        return redirect(reverse('stats:stats_history'))
 
 
+@method_decorator(stat_history_decorators, name='dispatch')
 class ShowStatsHistoryView(LoginRequiredMixin, View):
-    model = Stats
-    all_stats = list()
+    @staticmethod
     form = filterForm()
-    def get(self, request):
+    def get(request):
         # Query the DB
         all_stats = Stats.objects.filter(user=request.user).values_list('pk', 'time_when_measured', 'user', 'voltage', 'current', 'power')
-        self.all_stats = json.dumps(list(all_stats), cls=DjangoJSONEncoder)
-
-        if len(self.all_stats) > 0:
+        all_stats = json.dumps(list(all_stats), cls=DjangoJSONEncoder)
+        context = {'title': 'All Recorded Measurements', 'most_recent_url': get_most_recent_measurement_url(request)}
+        if all_stats.exists():
             # Create a context with all of the results from the query
-            context = { "all_stats": self.all_stats, "form" : self.form }
-        else:
-            # Create an empty context. The HTML will take care of things.
-            context = {}
+            context['all_stats'] = all_stats
         return render(request, 'stats/stat_history.html', context)
 
 
+@method_decorator(export_stats_decorators, name='dispatch')
 class ExportStatsToExcelView(LoginRequiredMixin, View):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="{}_stats.csv"'.format(request.user.username)
         writer = csv.writer(response)

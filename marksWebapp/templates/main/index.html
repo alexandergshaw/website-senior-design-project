@@ -6,28 +6,27 @@
             Hello {{ user.username }}, what would you like to do?
         </div>
         <div class="card-row">
-            <a href="#">
+            <a href="{{ most_recent_url }}">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
                             View Most Recent Measurement
                         </h5>
-                        <img class="card-image" src="{% static 'main/content/images/baseline-person-24px.svg' %}">
+                        <img class="card-image" src="{% static 'main/content/images/baseline-poll-24px.svg' %}">
                     </div>
                 </div>
             </a>
-            <a href="#">
+            <a href="{% url 'stats:stats_history' %}">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
                             View Measurement History
                         </h5>
-                        <img class="card-image" src="{% static 'main/content/images/baseline-group-24px.svg' %}">
+                        <img class="card-image" src="{% static 'main/content/images/baseline-watch_later-24px.svg' %}">
                     </div>
                 </div>
             </a>
         </div>
-
     {% else %}
         <div class="login-content">
             <div class="display-1">
@@ -36,7 +35,7 @@
             <div class="display-3">
                 Please log in using your Missouri S&T email account.
             </div>
-            <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Let's Look at Some Measurements, Baby</a>
+            <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Click Here to Log In</a>
         </div>
     {% endif %}
 {% endblock %}
