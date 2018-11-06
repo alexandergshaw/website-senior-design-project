@@ -26,6 +26,17 @@
                     </div>
                 </div>
             </a>
+
+            <a href="{{ user.profile.get_absolute_url }}">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Change or View Settings
+                        </h5>
+                        <img class="card-image" src="{% static 'main/content/images/baseline-settings-20px.svg' %}">
+                    </div>
+                </div>
+            </a>
         </div>
     {% else %}
         <div class="login-content">
