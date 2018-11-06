@@ -68,11 +68,15 @@
             }
         }
 
+        let stat_url = '{% url 'stats:show_stats' stat_id=0 %}';
         document.getElementById("stats_list").innerHTML = "";
         {#document.getElementById("stats_list").innerHTML += the_stats;#}
         document.getElementById("stats_list").innerHTML += "<tr><b><td>Data and Time</td><td>Voltage</td><td>Current</td><td>Power</td></b></tr>";
         for(let i = 0; i < the_stats.length; i++){
-            document.getElementById("stats_list").innerHTML += "<tr><td>" + the_stats[i][1] + "</td><td>" + the_stats[i][3] + "</td><td>" + the_stats[i][4] + "</td><td>" + the_stats[i][5] + "</td></tr>";
+            {#let num = the_stats[i][0];#}
+            {#.toString();#}
+            {#.replace('num', the_stats[i][0].toString());#}
+            document.getElementById("stats_list").innerHTML += "<tr><td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][1] + "</a></td><td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][3] + "</a></td><td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][4] + "</a></td><td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][5] + "</a></td></tr>";
         }
 
     }

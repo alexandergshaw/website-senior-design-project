@@ -64,15 +64,16 @@ class DeleteStatsView(LoginRequiredMixin, View):
 @method_decorator(stat_history_decorators, name='dispatch')
 class ShowStatsHistoryView(LoginRequiredMixin, View):
     @staticmethod
-    form = filterForm()
     def get(request):
         # Query the DB
         all_stats = Stats.objects.filter(user=request.user).values_list('pk', 'time_when_measured', 'user', 'voltage', 'current', 'power')
-        all_stats = json.dumps(list(all_stats), cls=DjangoJSONEncoder)
         context = {'title': 'All Recorded Measurements', 'most_recent_url': get_most_recent_measurement_url(request)}
         if all_stats.exists():
+            all_stats = json.dumps(list(all_stats), cls=DjangoJSONEncoder)
+            form = filterForm()
             # Create a context with all of the results from the query
             context['all_stats'] = all_stats
+            context['form'] = form
         return render(request, 'stats/stat_history.html', context)
 
 
