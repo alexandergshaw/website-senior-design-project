@@ -7,12 +7,12 @@ from django.views import View
 from marksWebapp.utils import get_most_recent_measurement_url
 
 
-user_profile_decorators = [transaction.atomic]
+settings_decorators = [transaction.atomic]
 
 
-@method_decorator(user_profile_decorators, name='dispatch')
-class UserProfileView(LoginRequiredMixin, View):
+@method_decorator(settings_decorators, name='dispatch')
+class SettingsView(LoginRequiredMixin, View):
     @staticmethod
     def get(request):
-        context = {'title': 'User Profile', 'most_recent_url': get_most_recent_measurement_url(request)}
+        context = {'title': 'Settings', 'most_recent_url': get_most_recent_measurement_url(request)}
         return render(request, 'profiles/user_profile.html', context)
