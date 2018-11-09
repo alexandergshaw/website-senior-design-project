@@ -5,9 +5,9 @@
         <div class="display-1">
             Hello {{ user.username }}, what would you like to do?
         </div>
-        <div class="card-row">
+        <div class="card-row-measurements">
             <a href="{{ most_recent_url }}">
-                <div class="card">
+                <div class="card measurement-card">
                     <div class="card-body">
                         <h5 class="card-title">
                             View Most Recent Measurement
@@ -17,7 +17,7 @@
                 </div>
             </a>
             <a href="{% url 'stats:stats_history' %}">
-                <div class="card">
+                <div class="card measurement-card">
                     <div class="card-body">
                         <h5 class="card-title">
                             View Measurement History
@@ -28,7 +28,7 @@
             </a>
 
             <a href="{{ user.profile.get_absolute_url }}">
-                <div class="card">
+                <div class="card measurement-card">
                     <div class="card-body">
                         <h5 class="card-title">
                             Change or View Settings

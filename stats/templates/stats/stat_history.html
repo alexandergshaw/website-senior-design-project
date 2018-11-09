@@ -101,9 +101,10 @@
 
 {% if all_stats %}
     <div class="container-fluid">
+        <h1>History of {{user.username}}'s Measurements</h1>
         <form>
 {#    {% include "stats/filter_form.html" %}#}
-            <h1>Filtering</h1>
+            <h2>Filters</h2>
             <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
@@ -146,7 +147,7 @@
 
     <div class="main container-fluid">
         <body onload="test()">
-        <h1>Measurements</h1>
+        <h2>Filtered Measurements</h2>
         <table class="table" id="stats_list">
     {#    {% for data in all_stats %}#}
     {#      {{ data }}#}
