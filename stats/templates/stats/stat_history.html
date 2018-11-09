@@ -71,66 +71,93 @@
         let stat_url = '{% url 'stats:show_stats' stat_id=0 %}';
         document.getElementById("stats_list").innerHTML = "";
         {#document.getElementById("stats_list").innerHTML += the_stats;#}
-        document.getElementById("stats_list").innerHTML += "<tr><b><td>Data and Time</td><td>Voltage</td><td>Current</td><td>Power</td></b></tr>";
+        document.getElementById("stats_list").innerHTML +=
+            "<thead>" +
+                "<tr>" +
+                    "<td>Data and Time</td>" +
+                    "<td>Voltage</td>" +
+                    "<td>Current</td>" +
+                    "<td>Power</td>" +
+                "</tr>" +
+            "</thead>";
+
         for(let i = 0; i < the_stats.length; i++){
             {#let num = the_stats[i][0];#}
             {#.toString();#}
             {#.replace('num', the_stats[i][0].toString());#}
-            document.getElementById("stats_list").innerHTML += "<tr><td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][1] + "</a></td><td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][3] + "</a></td><td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][4] + "</a></td><td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][5] + "</a></td></tr>";
+            document.getElementById("stats_list").innerHTML +=
+                "<tbody>" +
+                    "<tr>" +
+                        "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][1] + "</a></td>" +
+                        "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][3] + "</a></td>" +
+                        "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][4] + "</a></td>" +
+                        "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][5] + "</a></td>" +
+                    "</tr>" +
+                "</tbody>";
         }
 
     }
-
 </script>
-<h1 align="center">All Recorded Measurements</h1>
-<!--<li>Default Header Stuff</li> -->
+
 {% if all_stats %}
-    <div align="center">
-    <a class="btn btn-info" href="{% url 'stats:export_excel' %}">Export Data To CSV</a>
-    <form>
+    <div class="container-fluid">
+        <form>
 {#    {% include "stats/filter_form.html" %}#}
-        <table align="center">
-            <tr>
-                <td id="date_cb" style="min-width: 35px;">{{ form.date_time_cb }}</td>
-                <td><h4>Date and Time</h4></td>
-                <td>{{ form.date_time_select }}</td>
-                <td>{{ form.date_time_tb }}</td>
-            </tr>
-            <tr>
-                <td id="voltage_cb" style="min-width: 35px;">{{ form.voltage_cb }}</td>
-                <td><h4>Voltage</h4></td>
-                <td>{{ form.voltage_select }}</td>
-                <td>{{ form.voltage_tb }}</td>
-            </tr>
-            <tr>
-                <td id="current_cb" style="min-width: 35px;">{{ form.current_cb }}</td>
-                <td><h4>Current</h4></td>
-                <td>{{ form.current_select }}</td>
-                <td>{{ form.current_tb }}</td>
-            </tr>
-            <tr>
-                <td id="power_cb" style="min-width: 35px;">{{ form.power_cb }}</td>
-                <td><h4>Power</h4></td>
-                <td>{{ form.power_select }}</td>
-                <td>{{ form.power_tb }}</td>
-            </tr>
-        </table>
-        <input value="Filter" type="button" align="center" onclick="test()">
-    </form>
+            <h1>Filtering</h1>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Activate</th>
+                        <th scope="col">Attribute</th>
+                        <th scope="col">Relational Operator</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="date_cb" style="min-width: 35px;">{{ form.date_time_cb }}</td>
+                        <td>Date and Time</td>
+                        <td>{{ form.date_time_select }}</td>
+                        <td>{{ form.date_time_tb }}</td>
+                    </tr>
+                    <tr>
+                        <td id="voltage_cb" style="min-width: 35px;">{{ form.voltage_cb }}</td>
+                        <td>Voltage</td>
+                        <td>{{ form.voltage_select }}</td>
+                        <td>{{ form.voltage_tb }}</td>
+                    </tr>
+                    <tr>
+                        <td id="current_cb" style="min-width: 35px;">{{ form.current_cb }}</td>
+                        <td>Current</td>
+                        <td>{{ form.current_select }}</td>
+                        <td>{{ form.current_tb }}</td>
+                    </tr>
+                    <tr>
+                        <td id="power_cb" style="min-width: 35px;">{{ form.power_cb }}</td>
+                        <td>Power</td>
+                        <td>{{ form.power_select }}</td>
+                        <td>{{ form.power_tb }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input value="Filter" class="btn btn-primary" type="button" align="center" onclick="test()">
+        </form>
     </div>
 
-    <div class="main" align="center">
-    <body onload="test()">
-    <table id="stats_list" style="list-style: none; text-align: center;">
-{#    {% for data in all_stats %}#}
-{#        <li>{{ data }}</li>#}
-{#        <!-- <li>{{ data.user }} - {{ data.time_when_measured }} - {{ data.voltage }} - {{ data.current }} - {{ data.power }}</li> -->#}
-{#    {% endfor %}#}
-    </table>
-    </body>
+    <div class="main container-fluid">
+        <body onload="test()">
+        <h1>Measurements</h1>
+        <table class="table table-bordered" id="stats_list">
+    {#    {% for data in all_stats %}#}
+    {#      {{ data }}#}
+    {#    {% endfor %}#}
+        </table>
+        </body>
+        <a class="btn btn-primary" href="{% url 'stats:export_excel' %}">Export Data To CSV</a>
     </div>
+
 
 {% else %}
-    <h3>No data yet.</h3>
+<div class="display-1">{{user.username}} has not recorded any measurements yet.</div>
 {% endif %}
 {% endblock %}
