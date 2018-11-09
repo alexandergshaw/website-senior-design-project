@@ -154,6 +154,7 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
 
 .card-title {
     text-align: center;
+    min-height: 50px;
 }
 
 .card-subtitle {
