@@ -150,11 +150,7 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
     margin-top: -9px;
 }
 
-.card-row {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-}
+
 
 .card-title {
     text-align: center;
@@ -174,9 +170,27 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
     margin: 25px 50px 25px 50px;
 }
 
+.card-row-measurements {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.card-row-pins {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .measurement-card {
     width: 250px;
     height: 250px;
+    margin: 2.5px 2.5px 2.5px 2.5px;
+}
+
+.pin-card {
+    width: 150px;
+    min-height: 150px;
     margin: 2.5px 2.5px 2.5px 2.5px;
 }
 
