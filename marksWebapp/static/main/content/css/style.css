@@ -174,7 +174,7 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
     margin: 25px 50px 25px 50px;
 }
 
-.card {
+.measurement-card {
     width: 250px;
     height: 250px;
     margin: 2.5px 2.5px 2.5px 2.5px;
