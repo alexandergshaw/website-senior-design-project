@@ -2,8 +2,8 @@
 {% block content %}
     {% load static %}
 
-        <div>
-            <div class="card-row">
+    <div class="container-fluid">
+        <div class="card-row">
                 <div class="card">
                     <div class="card-body">
                         <h1 class="card-title">
@@ -36,43 +36,41 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <div class="card-row">
-                <div class="card">
-                    <div class="card-body">
-                        <h1 class="card-title">
-                            Average Voltage
-                        </h1>
-                        <h2 class="card-subtitle mb-2 text-muted">
-                            {{ avg_voltage }} V
-                        </h2>
-                    </div>
+        <div class="card-row">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        Average Voltage
+                    </h1>
+                    <h2 class="card-subtitle mb-2 text-muted">
+                        {{ avg_voltage }} V
+                    </h2>
                 </div>
+            </div>
 
-                <div class="card">
-                    <div class="card-body">
-                        <h1 class="card-title">
-                            Average Current
-                        </h1>
-                        <h2 class="card-subtitle mb-2 text-muted">
-                            {{ avg_current }} A
-                        </h2>
-                    </div>
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        Average Current
+                    </h1>
+                    <h2 class="card-subtitle mb-2 text-muted">
+                        {{ avg_current }} A
+                    </h2>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h1 class="card-title">
-                            Average Power
-                        </h1>
-                        <h2 class="card-subtitle mb-2 text-muted">
-                            {{ avg_power }} W
-                        </h2>
-                    </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        Average Power
+                    </h1>
+                    <h2 class="card-subtitle mb-2 text-muted">
+                        {{ avg_power }} W
+                    </h2>
                 </div>
             </div>
         </div>
-    <div class="stat-view-delete">
-        <a class="btn btn-danger" href="{% url 'stats:delete' stat_id=stat.pk %}">Delete This Stat</a>
+        <div class="stat-view-delete">
+            <a class="btn btn-danger" href="{% url 'stats:delete' stat_id=stat.pk %}">Delete This Stat</a>
+        </div>
     </div>
 {% endblock %}
