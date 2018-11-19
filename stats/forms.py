@@ -1,11 +1,18 @@
 from django import forms
 from django.forms.widgets import SelectDateWidget
+import datetime
 
 choices = (
     ('less_than' , 'Less than'),
     ('equal', 'Equal'),
     ('greater_than', 'Greater Than')
 )
+
+current_year = datetime.datetime.now().year
+years = []
+for i in range(2015, current_year):
+    years.append(str(i))
+years.append(str(current_year))
 
 class filterForm(forms.Form):
     date_time_cb = forms.BooleanField(required=False)
@@ -21,6 +28,7 @@ class filterForm(forms.Form):
     date_time_tb = forms.DateTimeField(required=True, widget=SelectDateWidget(
         # empty_label=("Choose Year", "Choose Month", "Choose Day"),
         # empty_label=''
+        years=years
     ))
     voltage_tb = forms.FloatField(required=False)
     current_tb = forms.FloatField(required=False)
