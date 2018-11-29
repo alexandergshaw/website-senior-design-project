@@ -7,18 +7,18 @@
 
     function test() {
         var the_stats = JSON.parse('{{ all_stats|escapejs }}');
-
-        if(document.getElementById("id_date_time_cb").checked === true && document.getElementById("id_date_time_tb").value !== ""){
-            let tb_value = new Date(document.getElementById("id_date_time_tb").value);
+        {#&& document.getElementById("id_date_time_tb").value !== ""#}
+        if(document.getElementById("id_date_time_cb").checked === true){
+            let month_value = String(document.getElementById("id_date_time_tb_month").value);
+            let day_value = String(document.getElementById("id_date_time_tb_day").value);
+            let year_value = String(document.getElementById("id_date_time_tb_year").value);
+            let tb_value = new Date(year_value + "-" + month_value + "-" + day_value);
             switch(document.getElementById("id_date_time_select").value){
-                case 'less_than':
-                    the_stats = the_stats.filter(stat => Date(stat[1]) < tb_value);
+                case 'before':
+                    the_stats = the_stats.filter(stat => new Date(stat[1]) < tb_value);
                     break;
-                case 'equal':
-                    the_stats = the_stats.filter(stat => Date(stat[1]) === tb_value);
-                    break;
-                case 'greater_than':
-                    the_stats = the_stats.filter(stat => Date(stat[1]) > tb_value);
+                case 'after':
+                    the_stats = the_stats.filter(stat => new Date(stat[1]) > tb_value);
                     break;
             }
         }
@@ -74,7 +74,7 @@
         document.getElementById("stats_list").innerHTML +=
             "<thead>" +
                 "<tr>" +
-                    "<td>Data and Time</td>" +
+                    "<td>Date and Time</td>" +
                     "<td>Voltage</td>" +
                     "<td>Current</td>" +
                     "<td>Power</td>" +
@@ -85,10 +85,11 @@
             {#let num = the_stats[i][0];#}
             {#.toString();#}
             {#.replace('num', the_stats[i][0].toString());#}
+            let stat_date = new Date(the_stats[i][1]);
             document.getElementById("stats_list").innerHTML +=
                 "<tbody>" +
                     "<tr>" +
-                        "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][1] + "</a></td>" +
+                        "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + stat_date + "</a></td>" +
                         "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][3] + "</a></td>" +
                         "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][4] + "</a></td>" +
                         "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][5] + "</a></td>" +
