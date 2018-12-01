@@ -27,11 +27,11 @@
                 </div>
             </a>
 
-            <a href="{{ user.profile.get_absolute_url }}">
+            <a href="{% url 'profiles:pin_settings' %}">
                 <div class="card measurement-card">
                     <div class="card-body">
                         <h5 class="card-title">
-                            View My Settings
+                            View My Pin Settings
                         </h5>
                         <img class="card-image" src="{% static 'main/content/images/baseline-settings-20px.svg' %}">
                     </div>

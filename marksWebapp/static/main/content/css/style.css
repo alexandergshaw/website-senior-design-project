@@ -244,3 +244,11 @@ a, a:hover, a:focus {
     text-align: center;
     font-style: italic;
 }
+
+.error {
+    color: red;
+}
+
+.success {
+    color: lawngreen;
+}
