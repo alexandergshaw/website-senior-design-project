@@ -1,10 +1,10 @@
 import json
 
-from django.db import models
+from django.db.models import TextField
 from django.core.serializers.json import DjangoJSONEncoder
 
 
-class JSONField(models.TextField):
+class JSONField(TextField):
     def to_python(self, value):
         if value == '':
             return None

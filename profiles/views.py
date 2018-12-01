@@ -14,5 +14,8 @@ settings_decorators = [transaction.atomic]
 class SettingsView(LoginRequiredMixin, View):
     @staticmethod
     def get(request):
-        context = {'title': 'Settings', 'most_recent_url': get_most_recent_measurement_url(request)}
+        context = {
+            'title': 'Pin Settings for {}'.format(request.user.username),
+            'most_recent_url': get_most_recent_measurement_url(request),
+        }
         return render(request, 'profiles/user_profile.html', context)
