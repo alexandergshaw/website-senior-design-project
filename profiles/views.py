@@ -20,7 +20,7 @@ class SettingsView(LoginRequiredMixin, View):
 
     @staticmethod
     def process_initial_data(phase_pins, initial_settings):
-        if 'pins' in phase_pins:
+        if phase_pins:
             count = 1
             for pin_value in phase_pins['pins']:
                 initial_settings['pin{}'.format(count)] = pin_value
@@ -44,4 +44,4 @@ class SettingsView(LoginRequiredMixin, View):
             'phase_2_form': PhaseForm(initial=phase_2_initial, prefix=self.PHASE_2),
             'phase_3_form': PhaseForm(initial=phase_3_initial, prefix=self.PHASE_3),
         }
-        return render(request, 'profiles/user_profile.html', context)
+        return render(request, 'profiles/pin_settings.html', context)
