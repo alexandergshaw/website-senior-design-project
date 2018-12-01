@@ -26,7 +26,7 @@ class Profile(models.Model):
 
     @staticmethod
     def get_absolute_url():
-        return reverse('profiles:user_profile')
+        return reverse('profiles:pin_settings')
 
     def __str__(self):
         return self.user.username

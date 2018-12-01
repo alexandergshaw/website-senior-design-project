@@ -23,5 +23,5 @@ class JSONField(TextField):
         if value == '':
             return None
         if isinstance(value, dict):
-            val = json.dumps(value, cls=DjangoJSONEncoder)
+            val = json.dumps(str(value), cls=DjangoJSONEncoder)
         return val

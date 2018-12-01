@@ -21,9 +21,10 @@ class SettingsView(LoginRequiredMixin, View):
 
     @staticmethod
     def process_initial_data(phase_pins, initial_settings):
-        if phase_pins:
+        pins = eval(phase_pins)
+        if pins:
             count = 1
-            for pin_value in phase_pins['pins']:
+            for pin_value in pins['pins']:
                 initial_settings['pin{}'.format(count)] = pin_value
                 count += 1
 
@@ -50,9 +51,9 @@ class SettingsView(LoginRequiredMixin, View):
         phase_2_form = PhaseForm(request.POST, prefix=self.PHASE_2)
         phase_3_form = PhaseForm(request.POST, prefix=self.PHASE_3)
         if phase_1_form.is_valid() and phase_2_form.is_valid() and phase_3_form.is_valid():
-            profile.phase_1_settings = {'pins': phase_1_form.cleaned_data.values()}
-            profile.phase_2_settings = {'pins': phase_2_form.cleaned_data.values()}
-            profile.phase_3_settings = {'pins': phase_3_form.cleaned_data.values()}
+            profile.phase_1_settings = {'pins': list(phase_1_form.cleaned_data.values())}
+            profile.phase_2_settings = {'pins': list(phase_2_form.cleaned_data.values())}
+            profile.phase_3_settings = {'pins': list(phase_3_form.cleaned_data.values())}
             profile.save()
             messages.success(request, 'Pin Configurations Successfully Stored.')
             return redirect(reverse('index'))

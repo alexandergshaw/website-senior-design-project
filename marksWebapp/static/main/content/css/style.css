@@ -241,5 +241,6 @@ a, a:hover, a:focus {
 }
 
 .messages {
+    text-align: center;
     font-style: italic;
 }

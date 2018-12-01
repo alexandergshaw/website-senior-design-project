@@ -438,6 +438,7 @@
         </div>
     </div>
     <form method="post">
+        {% csrf_token %}
         <div class="hide_phase_forms">
             {{ phase_1_form }}
             {{ phase_2_form }}
