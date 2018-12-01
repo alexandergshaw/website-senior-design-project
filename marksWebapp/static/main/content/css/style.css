@@ -239,3 +239,7 @@ a, a:hover, a:focus {
 .hide_phase_forms {
     display: none;
 }
+
+.messages {
+    font-style: italic;
+}
