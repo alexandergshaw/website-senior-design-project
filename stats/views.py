@@ -1,6 +1,7 @@
 import csv
 import json
 
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.db.models import Avg
@@ -58,6 +59,7 @@ class DeleteStatsView(LoginRequiredMixin, View):
     @staticmethod
     def get(request, stat_id):
         Stats.objects.filter(pk=stat_id).delete()
+        messages.success(request, 'Statistic successfully removed from database.')
         return redirect(reverse('stats:stats_history'))
 
 
