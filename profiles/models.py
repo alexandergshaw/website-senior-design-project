@@ -16,10 +16,11 @@ class Profile(models.Model):
     )
 
     user = models.OneToOneField(User, primary_key=True, db_column='USER_ID', on_delete=models.CASCADE)
-    status = models.CharField(max_length=5, choices=STATUS_CHOICES, db_column='STATUS')
+    status = models.CharField(max_length=2, default=ADMIN, choices=STATUS_CHOICES, db_column='STATUS')
     phase_1_settings = JSONField(null=True, blank=True, db_column='PHASE_1_SETTINGS')
     phase_2_settings = JSONField(null=True, blank=True, db_column='PHASE_2_SETTINGS')
     phase_3_settings = JSONField(null=True, blank=True, db_column='PHASE_3_SETTINGS')
+    is_activated = models.BooleanField(default=False, db_column='IS_ACTIVATED')
 
     class Meta:
         db_table = 'PROFILE'

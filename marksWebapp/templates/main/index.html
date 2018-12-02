@@ -2,42 +2,46 @@
 {% load static %}
 {% block content %}
     {% if user.is_authenticated %}
-        <div class="display-1">
-            Hello {{ user.username }}, what would you like to do?
-        </div>
-        <div class="card-row-measurements">
-            <a href="{{ most_recent_url }}">
-                <div class="card measurement-card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            View My Most Recent Measurement
-                        </h5>
-                        <img class="card-image" src="{% static 'main/content/images/baseline-poll-24px.svg' %}">
+        {% if user.profile.is_activated %}
+            <div class="display-1">
+                Hello {{ user.username }}, what would you like to do?
+            </div>
+            <div class="card-row-measurements">
+                <a href="{{ most_recent_url }}">
+                    <div class="card measurement-card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                View My Most Recent Measurement
+                            </h5>
+                            <img class="card-image" src="{% static 'main/content/images/baseline-poll-24px.svg' %}">
+                        </div>
                     </div>
-                </div>
-            </a>
-            <a href="{% url 'stats:stats_history' %}">
-                <div class="card measurement-card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            View My Measurement History
-                        </h5>
-                        <img class="card-image" src="{% static 'main/content/images/baseline-watch_later-24px.svg' %}">
+                </a>
+                <a href="{% url 'stats:stats_history' %}">
+                    <div class="card measurement-card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                View My Measurement History
+                            </h5>
+                            <img class="card-image" src="{% static 'main/content/images/baseline-watch_later-24px.svg' %}">
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="{% url 'profiles:pin_settings' %}">
-                <div class="card measurement-card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            View My Pin Settings
-                        </h5>
-                        <img class="card-image" src="{% static 'main/content/images/baseline-settings-20px.svg' %}">
+                <a href="{% url 'profiles:pin_settings' %}">
+                    <div class="card measurement-card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                View My Pin Settings
+                            </h5>
+                            <img class="card-image" src="{% static 'main/content/images/baseline-settings-20px.svg' %}">
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
+        {% else %}
+            <p>Your account is currently not activated.  Please wait until the site admin has activated your account.</p>
+        {% endif %}
     {% else %}
         <div class="login-content">
             <div class="display-1">

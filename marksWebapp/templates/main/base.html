@@ -17,19 +17,30 @@
 
     <nav class="navbar navbar-dark bg-dark flex-row">
         {% if user.is_authenticated %}
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Menu
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="{% url 'index' %}">Home</a>
-                <a class="dropdown-item" href="{{ most_recent_url }}">My Most Recent Measurement</a>
-                <a class="dropdown-item" href="{% url 'stats:stats_history' %}">My Measurement History</a>
-                <a class="dropdown-item" href="{% url 'profiles:pin_settings' %}">My Pin Settings</a>
-                <a class="dropdown-item" href="{% url 'profiles:logout' %}">Logout</a>
-              </div>
-            </div>
-            <span class="navbar-text"><a href="{{ user.profile.get_absolute_url }}">{{ user.username }}</a></span>
+            {% if user.profile.is_activated %}
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{% url 'index' %}">Home</a>
+                    <a class="dropdown-item" href="{{ most_recent_url }}">My Most Recent Measurement</a>
+                    <a class="dropdown-item" href="{% url 'stats:stats_history' %}">My Measurement History</a>
+                    <a class="dropdown-item" href="{% url 'profiles:pin_settings' %}">My Pin Settings</a>
+                    <a class="dropdown-item" href="{% url 'profiles:logout' %}">Logout</a>
+                  </div>
+                </div>
+                <span class="navbar-text"><a href="{{ user.profile.get_absolute_url }}">{{ user.username }}</a></span>
+            {% else %}
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item">Account Is Not Activated</a>
+                    </div>
+                </div>
+            {% endif %}
         {% else %}
             <div class="dropdown">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
