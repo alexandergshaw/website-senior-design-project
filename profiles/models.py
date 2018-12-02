@@ -10,9 +10,11 @@ from .fields import JSONField
 class Profile(models.Model):
     STUDENT = 'ST'
     ADMIN = 'AD'
+    SUPERUSER = 'SU'
     STATUS_CHOICES = (
         (STUDENT, 'Student User'),
         (ADMIN, 'Site Admin'),
+        (SUPERUSER, 'Super Admin')
     )
 
     user = models.OneToOneField(User, primary_key=True, db_column='USER_ID', on_delete=models.CASCADE)
