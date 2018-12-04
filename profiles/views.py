@@ -21,7 +21,7 @@ class SettingsView(LoginRequiredMixin, View):
 
     @staticmethod
     def process_initial_data(phase_pins, initial_settings):
-        pins = eval(phase_pins)
+        pins = eval(phase_pins) if phase_pins else None
         if pins:
             count = 1
             for pin_value in pins['pins']:
