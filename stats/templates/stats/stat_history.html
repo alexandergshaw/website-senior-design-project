@@ -69,6 +69,7 @@
         }
 
         let stat_url = '{% url 'stats:show_stats' stat_id=0 %}';
+        let delete_stat_url = '{% url 'stats:delete' stat_id=0 %}';
         document.getElementById("stats_list").innerHTML = "";
         {#document.getElementById("stats_list").innerHTML += the_stats;#}
         document.getElementById("stats_list").innerHTML +=
@@ -94,7 +95,7 @@
                         "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][3] + "</a></td>" +
                         "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][4] + "</a></td>" +
                         "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][5] + "</a></td>" +
-                        "<td><div class=\"btn btn-danger\" type=\"button\">Delete</div></td>" +
+                        "<td><a class=\"btn btn-danger\" type=\"button\" href=" + delete_stat_url.replace(/0/, the_stats[i][0].toString()) + ">Delete</a></td>" +
                     "</tr>" +
                 "</tbody>";
         }

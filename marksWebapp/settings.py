@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'chartjs',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -181,3 +182,5 @@ LOGIN_URL = 'account:login'
 LOGIN_REDIRECT_URL = 'index'
 
 LOGOUT_REDIRECT_URL = 'index'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
