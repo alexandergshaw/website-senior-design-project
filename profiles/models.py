@@ -12,8 +12,8 @@ class Profile(models.Model):
     TRUSTED = 'TR'
     ADMIN = 'AD'
     STATUS_CHOICES = (
-        (STUDENT, 'Untrusted Student'),
-        (TRUSTED, 'Trusted Student'),
+        (STUDENT, 'Undergraduate Student'),
+        (TRUSTED, 'Graduate Student'),
         (ADMIN, 'Admin')
     )
     STATUS_CHOICES_DICT = dict(STATUS_CHOICES)
@@ -24,6 +24,7 @@ class Profile(models.Model):
     phase_2_settings = JSONField(null=True, blank=True, db_column='PHASE_2_SETTINGS')
     phase_3_settings = JSONField(null=True, blank=True, db_column='PHASE_3_SETTINGS')
     is_activated = models.BooleanField(default=False, db_column='IS_ACTIVATED')
+    ui_password = models.CharField(max_length=128, blank=True, db_column='UI_PASSWORD')
 
     class Meta:
         db_table = 'PROFILE'
