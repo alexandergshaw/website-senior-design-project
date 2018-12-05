@@ -28,6 +28,10 @@ html, body {
     margin-bottom: 2%;
 }
 
+.btn-primary {
+    text: black;
+}
+
 .container-fluid {
     text-align: center;
     margin-bottom: 1%;
@@ -191,7 +195,7 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
 
 .pin-card {
     width: 150px;
-    min-height: 150px;
+    min-height: 160px;
     margin: 2.5px 2.5px 2.5px 2.5px;
 }
 
