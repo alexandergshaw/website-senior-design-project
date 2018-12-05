@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.models import User
 
 from .models import Profile
 
@@ -21,3 +20,9 @@ class PhaseForm(forms.Form):
     pin14 = forms.BooleanField(required=False)
     pin15 = forms.BooleanField(required=False)
     pin16 = forms.BooleanField(required=False)
+
+
+class PermissionsForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['status']

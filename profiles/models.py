@@ -12,10 +12,11 @@ class Profile(models.Model):
     TRUSTED = 'TR'
     ADMIN = 'AD'
     STATUS_CHOICES = (
-        (STUDENT, 'Student'),
-        (TRUSTED, 'Trusted'),
+        (STUDENT, 'Untrusted Student'),
+        (TRUSTED, 'Trusted Student'),
         (ADMIN, 'Admin')
     )
+    STATUS_CHOICES_DICT = dict(STATUS_CHOICES)
 
     user = models.OneToOneField(User, primary_key=True, db_column='USER_ID', on_delete=models.CASCADE)
     status = models.CharField(max_length=2, default=TRUSTED, choices=STATUS_CHOICES, db_column='STATUS')
@@ -29,7 +30,7 @@ class Profile(models.Model):
 
     @staticmethod
     def get_absolute_url():
-        return reverse('profiles:pin_settings')
+        return reverse('index')
 
     def __str__(self):
         return self.user.username

@@ -23,10 +23,15 @@
                     Menu
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="{% url 'index' %}">Home</a>
+                    <a class="dropdown-item" href="{{ user.get_absolute_url }}">Home</a>
                     <a class="dropdown-item" href="{{ most_recent_url }}">My Most Recent Measurement</a>
                     <a class="dropdown-item" href="{% url 'stats:stats_history' %}">My Measurement History</a>
-                    <a class="dropdown-item" href="{% url 'profiles:pin_settings' %}">My Pin Settings</a>
+                      {% if user.profile.status == user.profile.TRUSTED or user.profile.status == user.profile.ADMIN %}
+                          <a class="dropdown-item" href="{% url 'profiles:pin_settings' %}">My Pin Settings</a>
+                      {% endif %}
+                      {% if user.profile.status == user.profile.ADMIN %}
+                          <a class="dropdown-item" href="{% url 'profiles:admin' %}">Manage Users</a>
+                      {% endif %}
                     <a class="dropdown-item" href="{% url 'profiles:logout' %}">Logout</a>
                   </div>
                 </div>
@@ -37,7 +42,7 @@
                         Menu
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item">Account Is Not Activated</a>
+                        <a class="dropdown-item" href="{% url 'profiles:logout' %}">Logout</a>
                     </div>
                 </div>
             {% endif %}

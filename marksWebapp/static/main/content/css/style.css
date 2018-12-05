@@ -245,8 +245,9 @@ a, a:hover, a:focus {
 }
 
 .messages {
-    text-align: center;
     font-style: italic;
+    display: table;
+    margin: 0 auto;
 }
 
 .error {
@@ -254,5 +255,9 @@ a, a:hover, a:focus {
 }
 
 .success {
-    color: lawngreen;
+    color: darkgreen;
+}
+
+.messages-div {
+    text-align: center;
 }
