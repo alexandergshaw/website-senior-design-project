@@ -78,6 +78,7 @@
                     "<td>Voltage</td>" +
                     "<td>Current</td>" +
                     "<td>Power</td>" +
+                    "<td>Delete Measurement?</td>" +
                 "</tr>" +
             "</thead>";
 
@@ -93,6 +94,7 @@
                         "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][3] + "</a></td>" +
                         "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][4] + "</a></td>" +
                         "<td><a href=" + stat_url.replace(/0/, the_stats[i][0].toString()) + ">" + the_stats[i][5] + "</a></td>" +
+                        "<td><div class=\"btn btn-danger\" type=\"button\">Delete</div></td>" +
                     "</tr>" +
                 "</tbody>";
         }
