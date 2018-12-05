@@ -8,6 +8,7 @@ from .views import (
     DeleteUserView,
     ActivateUserView,
     ChangePermissionsView,
+    SetUIPasswordView,
 )
 
 
@@ -20,4 +21,5 @@ urlpatterns = [
     path('activate/<int:user_id>/', ActivateUserView.as_view(), name='activate'),
     path('permissions/<int:profile_id>/', ChangePermissionsView.as_view(), name='permissions'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('set_ui_password/<int:profile_id>/', SetUIPasswordView.as_view(), name='set_ui_password'),
 ]

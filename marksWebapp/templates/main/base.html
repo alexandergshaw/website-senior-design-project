@@ -17,7 +17,7 @@
 
     <nav class="navbar navbar-dark bg-dark flex-row">
         {% if user.is_authenticated %}
-            {% if user.profile.is_activated %}
+            {% if user.profile.is_activated and user.profile.ui_password %}
                 <div class="dropdown">
                   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Menu

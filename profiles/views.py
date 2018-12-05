@@ -9,7 +9,7 @@ from django.views import View
 
 from marksWebapp.utils import get_most_recent_measurement_url
 
-from .forms import PhaseForm, PermissionsForm
+from .forms import PhaseForm, PermissionsForm, SetUIPasswordForm
 from .models import Profile
 
 
@@ -18,6 +18,7 @@ admin_decorators = [transaction.atomic]
 delete_user_decorators = [transaction.atomic]
 activate_user_decorators = [transaction.atomic]
 change_permissions_decorators = [transaction.atomic]
+set_ui_password_decorators = [transaction.atomic]
 
 
 @method_decorator(settings_decorators, name='dispatch')
@@ -98,7 +99,8 @@ class AdminPinSettingsView(BasePinSettingsView):
 
 @method_decorator(admin_decorators, name='dispatch')
 class AdminView(LoginRequiredMixin, View):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         context = {
             'title': 'Manage Users',
             'users': User.objects.exclude(username=request.user.username),
@@ -159,3 +161,31 @@ class ChangePermissionsView(LoginRequiredMixin, View):
                 'form': form,
             }
             return render(request, 'profiles/permissions_form.html', context)
+
+
+@method_decorator(set_ui_password_decorators, name='dispatch')
+class SetUIPasswordView(LoginRequiredMixin, View):
+    @staticmethod
+    def get(request, profile_id):
+        profile = get_object_or_404(Profile, pk=profile_id)
+        context = {
+            'title': 'Set UI Password',
+            'form': SetUIPasswordForm(instance=profile),
+        }
+        return render(request, 'profiles/set_ui_password_form.html', context)
+
+    @staticmethod
+    def post(request, profile_id):
+        profile = get_object_or_404(Profile, pk=profile_id)
+        form = SetUIPasswordForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'UI Password Successfully Set for User {}.'.format(profile))
+            return redirect(profile.get_absolute_url())
+        else:
+            messages.error(request, 'An error has occurred during UI Password processing.')
+            context = {
+                'title': 'Set UI Password',
+                'form': form,
+            }
+            return render(request, 'profiles/set_ui_password_form.html', context)
