@@ -51,7 +51,6 @@ class BasePinSettingsView(LoginRequiredMixin, View):
             'phase_1_form': PhaseForm(initial=phase_1_initial, prefix=self.PHASE_1),
             'phase_2_form': PhaseForm(initial=phase_2_initial, prefix=self.PHASE_2),
             'phase_3_form': PhaseForm(initial=phase_3_initial, prefix=self.PHASE_3),
-            'cancel_url': self.redirect_url,
         }
         return render(request, 'profiles/pin_settings.html', context)
 
@@ -74,7 +73,6 @@ class BasePinSettingsView(LoginRequiredMixin, View):
                 'phase_1_form': phase_1_form,
                 'phase_2_form': phase_2_form,
                 'phase_3_form': phase_3_form,
-                'cancel_url': self.redirect_url,
             }
             return render(request, 'profiles/pin_settings.html', context)
 

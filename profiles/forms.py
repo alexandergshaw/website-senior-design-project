@@ -49,11 +49,12 @@ class SetUIPasswordForm(forms.ModelForm):
         fields = ['ui_password']
 
     def clean(self):
-        ui_password = self.cleaned_data['ui_password']
-        ui_password_confirm = self.cleaned_data['ui_password_confirm']
+        cleaned_data = super(SetUIPasswordForm, self).clean()
+        ui_password = cleaned_data['ui_password']
+        ui_password_confirm = cleaned_data['ui_password_confirm']
         if ui_password and ui_password_confirm and ui_password != ui_password_confirm:
             raise forms.ValidationError('UI Passwords do not match', code='ui_password_mismatch')
-        return self.cleaned_data
+        return cleaned_data
 
     def _post_clean(self):
         super(SetUIPasswordForm, self)._post_clean()
