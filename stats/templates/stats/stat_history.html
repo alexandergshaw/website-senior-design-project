@@ -145,10 +145,13 @@
                     </tr>
                 </tbody>
             </table>
-            <input value="Filter" class="btn btn-primary" type="button" align="center" onclick="test()">
+            <input value="Filter" class="btn btn-secondary" type="button" align="center" onclick="test()">
+
         </form>
     </div>
-
+    <div class="export_container">
+        <a class="btn btn-primary" href="{% url 'stats:export_excel' %}">Export Data To CSV</a>
+    </div>
     <div class="main container-fluid">
         <body onload="test()">
         <h2>Filtered Measurements</h2>
@@ -158,7 +161,6 @@
     {#    {% endfor %}#}
         </table>
         </body>
-        <a class="btn btn-primary" href="{% url 'stats:export_excel' %}">Export Data To CSV</a>
     </div>
 
 
