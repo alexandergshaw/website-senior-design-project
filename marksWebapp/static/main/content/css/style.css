@@ -193,6 +193,24 @@ input[type=checkbox]:checked ~ .sidebar-icon > .diagonal.part-2 {
     margin: 2.5px 2.5px 2.5px 2.5px;
 }
 
+.user-settings-column {
+    display: flex;
+    align-content: center;
+}
+
+.user-settings-button {
+    margin-right: 2.5px;
+}
+
+.change-user-permission-group {
+    display: flex;
+    align-content: center;
+}
+
+.change-user-permissions-items {
+    margin-right: 2.5px;
+}
+
 .pin-card {
     width: 150px;
     min-height: 160px;
