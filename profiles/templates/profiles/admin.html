@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    {% load template_filters %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Permission Level</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for other_user in users %}
+                <tr>
+                    <td>{{ other_user.username }}</td>
+                    <td>{{ other_user.first_name }}</td>
+                    <td>{{ other_user.last_name }}</td>
+                    <td>{{ other_user.email }}</td>
+                    <td>{{ other_user.profile.STATUS_CHOICES_DICT|get_item:other_user.profile.status }}</td>
+                    <td>
+                        <a class="btn btn-danger" href="{% url 'profiles:delete' user_id=other_user.pk %}">Remove User</a>
+                        {% if other_user.profile.is_activated %}
+                            <a class="btn btn-primary" href="{% url 'profiles:permissions' profile_id=other_user.pk %}">Change Permissions</a>
+                            {% if other_user.profile.status == other_user.profile.STUDENT %}
+                                <a class="btn btn-secondary" href="{% url 'profiles:admin_pin_settings' profile_id=other_user.pk %}">Set Pin Settings</a>
+                            {% endif %}
+                        {% else %}
+                            <a class="btn btn-primary" href="{% url 'profiles:activate' user_id=other_user.pk %}">Activate User</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>There are currently no other users than yourself.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

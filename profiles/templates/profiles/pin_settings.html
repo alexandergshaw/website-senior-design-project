@@ -445,7 +445,7 @@
             {{ phase_3_form }}
         </div>
         <button type="submit" class="btn btn-success">Save Pin Configurations</button>
-        <a class="btn btn-danger" href="{% url 'index' %}">Back to Home Page</a>
+        <a class="btn btn-danger" href="{{ cancel_url }}">Back to Home Page</a>
     </form>
     <script type="text/javascript">
         let cards = document.getElementsByClassName('card');

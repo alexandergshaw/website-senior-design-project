@@ -13,7 +13,7 @@
                             <h5 class="card-title">
                                 View My Most Recent Measurement
                             </h5>
-                            <img class="card-image" src="{% static 'main/content/images/baseline-poll-24px.svg' %}">
+                            <img class="card-image" src="{% static 'main/content/images/baseline-poll-24px.svg' %}" alt="poll">
                         </div>
                     </div>
                 </a>
@@ -23,21 +23,34 @@
                             <h5 class="card-title">
                                 View My Measurement History
                             </h5>
-                            <img class="card-image" src="{% static 'main/content/images/baseline-watch_later-24px.svg' %}">
+                            <img class="card-image" src="{% static 'main/content/images/baseline-watch_later-24px.svg' %}" alt="watch_later">
                         </div>
                     </div>
                 </a>
-
-                <a href="{% url 'profiles:pin_settings' %}">
-                    <div class="card measurement-card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                View My Pin Settings
-                            </h5>
-                            <img class="card-image" src="{% static 'main/content/images/baseline-settings-20px.svg' %}">
+                {% if user.profile.status == user.profile.TRUSTED or user.profile.status == user.profile.ADMIN %}
+                    <a href="{% url 'profiles:pin_settings' %}">
+                        <div class="card measurement-card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    View My Pin Settings
+                                </h5>
+                                <img class="card-image" src="{% static 'main/content/images/baseline-settings-20px.svg' %}" alt="settings">
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                {% endif %}
+                {% if user.profile.status == user.profile.ADMIN %}
+                    <a href="{% url 'profiles:admin' %}">
+                        <div class="card measurement-card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Manage Users
+                                </h5>
+                                <img class="card-image" src="{% static 'main/content/images/baseline-supervisor_account-24px.svg' %}" alt="manger_users">
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
             </div>
         {% else %}
             <div class="display-1">
