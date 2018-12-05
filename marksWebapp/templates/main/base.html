@@ -23,7 +23,7 @@
                     Menu
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="{{ user.get_absolute_url }}">Home</a>
+                    <a class="dropdown-item" href="{{ user.profile.get_absolute_url }}">Home</a>
                     <a class="dropdown-item" href="{{ most_recent_url }}">My Most Recent Measurement</a>
                     <a class="dropdown-item" href="{% url 'stats:stats_history' %}">My Measurement History</a>
                       {% if user.profile.status == user.profile.TRUSTED or user.profile.status == user.profile.ADMIN %}
